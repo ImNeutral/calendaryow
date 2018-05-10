@@ -15,23 +15,14 @@ $(document).ready(function() {
         selectHelper: true,
         select: function(start, end) {
             modal.css("display", "block");
-            // var title = prompt('Event Title:');
-            // var eventData;
-            // if (title) {
-            //     eventData = {
-            //         title: title,
-            //         start: start,
-            //         end: end
-            //     };
-            //     $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-            // }
-            // $('#calendar').fullCalendar('unselect');
+            addEvent(start, end);
+
+
         },
         editable: true,
         eventLimit: true, // allow "more" link when too many events
         events: getAllEvents()
     });
-
 
 
     span.onclick = function() {
@@ -58,22 +49,39 @@ $(document).ready(function() {
             return value.replace(/\s+/, "");
     }
 
-    confirm.on("click", function(){
-
-        var title = replace_whitespaces($("#title").val());
-        var description = replace_whitespaces($("#description").val());
-
-        if(title != "" && description != ""){
-                alert("non empty proceed with shits");
-        }else{
-                alert("there are some empty shits");
-        }
-
-    });
-
     cancel.on("click", function(){
         modal.css("display", "none");
     });
+
+    function addEvent(start, end) {
+        confirm.on("click", function(){
+
+            var title = replace_whitespaces($("#title").val());
+            var description = replace_whitespaces($("#description").val());
+
+            if(title != ""){
+                var eventData;
+                if (title) {
+                    eventData = {
+                        title: title,
+                        description: description,
+                        start: start,
+                        end: end
+                    };
+                    $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                }
+                $('#calendar').fullCalendar('unselect');
+
+                confirm.destroy =true;
+                modal.css("display", "none");
+                addEvent = null;
+            }else{
+                alert("Title must not be empty.");
+
+            }
+        });
+        return 1;
+    }
 
 });
 
