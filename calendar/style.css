@@ -17,6 +17,11 @@ td {
     /*border-color: #28a745 !important;*/
 /*}*/
 
+.fc-state-default {
+    background-image:none;
+    background-color: #1abc9c;
+}
+
 #calendar {
     box-shadow: 0 3px 16px 0 #888888;
     background-color: white;
@@ -37,13 +42,19 @@ td {
 }
 
 .fc-day.fc-today {
-    background-color: #4285f4 !important;
+    //background-color: #4285f4 !important;
+    background-color: #0984e3 !important;
     opacity: 0.8;
     color: #fff;
 }
 
 .fc-day-header {
     font-size: 25px;
+}
+
+.fc-today > span {
+      color:white;
+    font-weight: bold;
 }
 
 .fc-day-number {
