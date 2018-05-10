@@ -29,8 +29,7 @@ $(document).ready(function() {
         },
         editable: true,
         eventLimit: true, // allow "more" link when too many events
-        events: [
-        ]
+        events: getAllEvents()
     });
 
 
@@ -40,12 +39,12 @@ $(document).ready(function() {
     };
 
     
-    modal.on("click", function (e) {
-        if (e.target != $('.modal-content')[0]) {
-          //  modal.css("display", "none");
-        }
+    // modal.on("click", function (e) {
+    //     if (e.target != $('.modal-content')[0]) {
+    //         modal.css("display", "none");
+    //     }
+    // });
 
-    });
     // modal.onclick = function(event) {
     //     if (event.target == $('#myModal')) {
     //         console.log("Hello");
@@ -54,7 +53,6 @@ $(document).ready(function() {
     //     }
     // }
 
-    //confirm
 
     replace_whitespaces = function(value){
             return value.replace(/\s+/, "");
@@ -78,3 +76,36 @@ $(document).ready(function() {
     });
 
 });
+
+
+// function storedsEvent() {
+//     var events = getAllEvents();
+//
+//     events[events.length] = {"title":"Meeting #4", "description": "Meeting 4"};
+//     localStorage.setItem("events",JSON.stringify(events));
+//
+//     var storedNames = JSON.parse(localStorage.getItem("events"));
+//     console.log(storedNames);
+// }
+
+function getAllEvents() {
+    var storedEvents = JSON.parse(localStorage.getItem("events"));
+    return storedEvents;
+}
+
+function defaultEvents() {
+    return [
+        {
+            id: 1,
+            title: 'Eidul-Fitr',
+            description: '',
+            start: '2018-05-01'
+        },
+        {
+            id: 2,
+            title: 'Testing Event',
+            description: '',
+            start: '2018-05-02'
+        },
+    ];
+}
