@@ -97,6 +97,10 @@ $(document).ready(function() {
 // }
 
 function getAllEvents() {
+    var events2 = defaultEvents();
+    localStorage.setItem("events",JSON.stringify(events2));
+
+
     var storedEvents = JSON.parse(localStorage.getItem("events"));
     return storedEvents;
 }
