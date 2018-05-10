@@ -17,8 +17,8 @@
 <section class="modal-section">
   <div id="myModal" class="modal">
       <div class="modal-content">
-        <span class="close">&times;</span>
-        <h4 id="modal-title" class="text-center">Add Event</h6>
+        <span class="close" id="close">&times;</span>
+        <h4 id="modal-title" class="text-center modal-title">Add Event</h4>
 
         <div class="modal-inside">
           <div class="modal-inside-div">
@@ -33,6 +33,29 @@
       </div>
       </div>
     </div>
+
+  </div>
+
+
+  <div id="editEvent" class="modal">
+    <div class="modal-content">
+      <span class="close" id="close-edit">&times;</span>
+      <h4 class="text-center modal-title">Edit Event</h4>
+
+        <div class="modal-inside">
+          <div class="modal-inside-div">
+            <input type="text" name="" placeholder="Title" id="edited-title" />
+          </div>
+          <div style="text-align: center;">
+            <div style="float:right;">
+              <button id="confirm-edit" class="modal-button-primary">Confirm Edit</button>
+              <button id="delete-event" class="modal-button-primary button-warning">Delete Event</button>
+              <button id="cancel-edit" class="modal-button-danger">Cancel</button>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
 
   </div>
 

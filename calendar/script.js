@@ -1,7 +1,13 @@
 $(document).ready(function() {
 
+    var editEventModal  = $('#editEvent');
+    var cancelEdit      = $("#cancel-edit");
+    var spanEdit        = $("#close-edit")[0];
+    var editedTitle     = $("#edited-title");
+
+
     var modal           = $('#myModal');
-    var span            = $(".close")[0];
+    var span            = $("#close")[0];
     var confirm         = $("#confirm-button");
     var cancel          = $("#cancel-button");
 
@@ -17,15 +23,18 @@ $(document).ready(function() {
             modal.css("display", "block");
 
             confirm.on("click", function(){
+                var startDate = new Date(start['_i']);
+                var endDate = new Date(end['_i']);
 
                 var title = replace_whitespaces($("#title").val());
+                $("#title").val('');
                 if(title != ""){
                     var eventData;
                     if (title) {
                         eventData = {
                             title: title,
-                            start: start,
-                            end: end
+                            start: getFormattedDate(startDate),
+                            end: getFormattedDate(endDate)
                         };
                         $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
                     }
@@ -34,13 +43,22 @@ $(document).ready(function() {
                     confirm.off();
                     modal.css("display", "none");
 
-                    var ev = $('#calendar').fullCalendar('clientEvents');
-                    saveEvents(ev);
-                }else{
+                    saveEvents();
+                } else{
                     alert("Title must not be empty.");
                 }
             });
-
+        },
+        eventDrop: function(){
+            saveEvents();
+        },
+        eventResize: function(){
+            saveEvents();
+        },
+        eventRender: function(event, element) {
+            element.bind('dblclick', function() {
+                editEvent(event);
+            });
         },
         editable: true,
         eventLimit: true, // allow "more" link when too many events
@@ -59,13 +77,62 @@ $(document).ready(function() {
     cancel.on("click", function(){
         modal.css("display", "none");
     });
+
+    spanEdit.onclick = function() {
+        editEventModal.css("display", "none");
+    };
+
+    cancelEdit.on("click", function(){
+        editEventModal.css("display", "none");
+    });
+
+
+    function editEvent(event) {
+        var confirmEdit = $('#confirm-edit');
+        var deleteEvent = $('#delete-event');
+
+        editedTitle.val(event['title']);
+        editEventModal.css('display', 'block');
+
+        confirmEdit.on('click', function (e) {
+            var newTitleInput    = $('#edited-title');
+            var newTitle = replace_whitespaces(newTitleInput.val());
+            if(newTitle != "") {
+                event.title = newTitle;
+                $('#calendar').fullCalendar('updateEvent', event);
+                saveEvents();
+                editEventModal.css('display', 'none');
+                alert("Edit Successful!");
+            } else {
+                alert("Title must not be empty!");
+            }
+            confirmEdit.off();
+        });
+
+        // event.title = "hello";
+        // $('#calendar').fullCalendar('updateEvent', event);
+        // saveEvents();
+        
+        deleteEvent.on('click', function (e) {
+            if(window.confirm("Delete this event?")) {
+                $('#calendar').fullCalendar('removeEvents', [event['_id'] ]);
+                saveEvents();
+                alert("Sucessfully deleted!");
+                editEventModal.css('display', 'none');
+            }
+        });
+    }
+
+
 });
 
 function getFormattedDate(date) {
-    return date.getFullYear() + "-" + ( ("0" + (date.getMonth() + 1)).slice(-2) ) + "-" + ( ("0" + (date.getDate() +1)).slice(-2) );
+    date.setDate( date.getDate() + 1 );
+    return date.getFullYear() + "-" + ( ("0" + (date.getMonth() + 1)).slice(-2) ) + "-" + ( ("0" + (date.getDate())).slice(-2) );
 }
 
-function saveEvents(events) {
+function saveEvents() {
+    var events = $('#calendar').fullCalendar('clientEvents');
     var newEvents = [];
     for(var roll=0; roll<events.length; roll++) {
         var dateStart = events[roll].start['_d'];
@@ -85,7 +152,6 @@ function saveEvents(events) {
     }
     // localStorage.clear();
     localStorage.setItem("events",JSON.stringify(newEvents));
-
 }
 
 function getAllEvents() {

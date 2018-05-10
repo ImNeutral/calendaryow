@@ -52,7 +52,7 @@
 }
 
 
-#modal-title {
+.modal-title {
     font-size: 20px;
     margin-top: 5px;
 }
@@ -109,3 +109,17 @@ textarea:focus, input:focus{
     color: white;
     cursor: pointer;
 }
+
+.button-warning:hover{
+    background-color: #fd7e14;
+}
+
+.button-warning {
+    background-color: #ffc107;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    color: #111;
+    cursor: pointer;
+}
+
