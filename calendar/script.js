@@ -29,6 +29,7 @@ $(document).ready(function() {
 
 
     $('.fc-day').hover(function (e) {
+      
     });
 
 });
