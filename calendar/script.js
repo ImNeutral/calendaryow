@@ -42,6 +42,7 @@ $(document).ready(function() {
         if (e.target != $('.modal-content')[0]) {
             modal.css("display", "none");
         }
+
     });
     // modal.onclick = function(event) {
     //     if (event.target == $('#myModal')) {
