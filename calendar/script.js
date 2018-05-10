@@ -155,8 +155,12 @@ function saveEvents() {
 }
 
 function getAllEvents() {
-    // localStorage.setItem("events",JSON.stringify(defaultEvents()));  //uncomment to replace all with default events
     var storedEvents = JSON.parse(localStorage.getItem("events"));
+    if(storedEvents.length <= 0) {
+        localStorage.setItem("events",JSON.stringify(defaultEvents()));  //uncomment to replace all with default events
+        storedEvents = JSON.parse(localStorage.getItem("events"));
+    }
+
     return storedEvents;
 }
 
