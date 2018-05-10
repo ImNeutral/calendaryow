@@ -1,0 +1,65 @@
+body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: "Century Gothic","Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    font-size: 14px;
+
+    background-image: url("45-degree-fabric-light.png");
+}
+
+td {
+    cursor: pointer;
+}
+
+#calendar {
+    box-shadow: 0 3px 16px 0 #888888;
+}
+
+.fc-header-toolbar {
+    padding: 10px;
+    margin-bottom: 0 !important;
+}
+
+.fc-basic-view {
+    padding: 0 10px 10px 10px;
+}
+
+.fc-day.fc-sun {
+    background-color: #ff3838 !important;
+    opacity: 0.4;
+}
+
+.fc-day.fc-today {
+    background-color: #546de5 !important;
+    opacity: 0.4;
+    color: #fff;
+}
+
+.fc-day-header {
+    font-size: 25px;
+}
+
+.fc-day-number {
+    font-size: 18px;
+}
+
+.fc-center {
+    font-size: 26px;
+}
+
+.fc-left {
+    font-size: 22px;
+}
+
+.fc-right {
+    font-size: 22px;
+}
+
+/*.fc-sun {*/
+    /*background-color: #e15f41;*/
+/*}*/
+
+#calendar {
+    max-width: 900px;
+    margin: 0 auto;
+}
