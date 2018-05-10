@@ -107,13 +107,99 @@ function defaultEvents() {
             id: 1,
             title: 'Eidul-Fitr',
             description: '',
+            start: '2017-06-24'
+        },
+        {
+            title: 'Ninoy Aquino Day',
+            description: '',
+            start: '2017-08-21'
+        },
+		
+        {
+            title: 'National Heroes Day',
+            description: '',
+            start: '2017-08-26'
+        },
+        {
+            title: 'Id-Ul-Adha',
+            description: '',
+            start: '2017-09-01'
+        },
+        {
+            title: 'Amun Jadid',
+            description: '',
+            start: '2017-09-21'
+        },
+        {
+            title: 'All Saints Day',
+            description: '',
+            start: '2017-11-01'
+        },
+        {
+            title: 'Bonifacio Day',
+            description: '',
+            start: '2017-11-30'
+        },
+        {
+            title: 'Maulid un-Nabi',
+            description: '',
+            start: '2017-11-30'
+        },
+        {
+            title: 'Christmas Eve',
+            description: '',
+            start: '2017-12-24'
+        },
+        {
+            title: 'Christmas Day',
+            description: '',
+            start: '2017-12-25'
+        },
+        {
+            title: 'New Years Day',
+            description: '',
+            start: '2018-01-01'
+        },
+        {
+            title: 'Chinese Lunar New Years Day',
+            description: '',
+            start: '2018-02-16'
+        },
+        {
+            title: 'Maundy Thursday',
+            description: '',
+            start: '2018-04-29'
+        },
+        {
+            title: 'Good Friday',
+            description: '',
+            start: '2018-04-30'
+        },
+		
+        {
+            title: 'The Day of Valor',
+            description: '',
+            start: '2018-04-09'
+        },
+        {
+            title: 'Lailatul Isra Wal Mi Raj',
+            description: '',
+            start: '2018-04-12'
+        },
+        {
+            title: 'Labor Day',
+            description: '',
             start: '2018-05-01'
         },
         {
-            id: 2,
-            title: 'Testing Event',
+            title: 'Independence Day',
             description: '',
-            start: '2018-05-02'
+            start: '2018-06-12'
+        },
+        {
+            title: 'Eidul-Fitr',
+            description: '',
+            start: '2018-06-13'
         },
     ];
 }
