@@ -11,8 +11,15 @@ td {
     cursor: pointer;
 }
 
+/*button {*/
+    /*color: #fff;*/
+    /*background-color: #28a745 !important;*/
+    /*border-color: #28a745 !important;*/
+/*}*/
+
 #calendar {
     box-shadow: 0 3px 16px 0 #888888;
+    background-color: white;
 }
 
 .fc-header-toolbar {
@@ -25,13 +32,13 @@ td {
 }
 
 .fc-day.fc-sun {
-    background-color: #ff3838 !important;
+    background-color: whitesmoke !important;
     opacity: 0.4;
 }
 
 .fc-day.fc-today {
-    background-color: #546de5 !important;
-    opacity: 0.4;
+    background-color: #4285f4 !important;
+    opacity: 0.8;
     color: #fff;
 }
 
@@ -50,6 +57,7 @@ td {
 .fc-left {
     font-size: 22px;
 }
+
 
 .fc-right {
     font-size: 22px;

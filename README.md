@@ -1,3 +1,3 @@
 # calendaryow
 
-A shitty calendar for all your events
+Yow! A shitty calendar for all your events
