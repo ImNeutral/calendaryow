@@ -15,8 +15,31 @@ $(document).ready(function() {
         selectHelper: true,
         select: function(start, end) {
             modal.css("display", "block");
-            addEvent(start, end);
 
+            confirm.on("click", function(){
+
+                var title = replace_whitespaces($("#title").val());
+                if(title != ""){
+                    var eventData;
+                    if (title) {
+                        eventData = {
+                            title: title,
+                            start: start,
+                            end: end
+                        };
+                        $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                    }
+                    $('#calendar').fullCalendar('unselect');
+
+                    confirm.off();
+                    modal.css("display", "none");
+
+                    var ev = $('#calendar').fullCalendar('clientEvents');
+                    saveEvents(ev);
+                }else{
+                    alert("Title must not be empty.");
+                }
+            });
 
         },
         editable: true,
@@ -29,74 +52,44 @@ $(document).ready(function() {
         modal.css("display", "none");
     };
 
-    
-    // modal.on("click", function (e) {
-    //     if (e.target != $('.modal-content')[0]) {
-    //         modal.css("display", "none");
-    //     }
-    // });
-
-    // modal.onclick = function(event) {
-    //     if (event.target == $('#myModal')) {
-    //         console.log("Hello");
-    //     } else {
-    //         console.log("ss");
-    //     }
-    // }
-
-
     replace_whitespaces = function(value){
-            return value.replace(/\s+/, "");
-    }
+        return value.replace(/\s+/, "");
+    };
 
     cancel.on("click", function(){
         modal.css("display", "none");
     });
-
-    function addEvent(start, end) {
-        confirm.on("click", function(){
-
-            var title = replace_whitespaces($("#title").val());
-            var description = replace_whitespaces($("#description").val());
-
-            if(title != ""){
-                var eventData;
-                if (title) {
-                    eventData = {
-                        title: title,
-                        description: description,
-                        start: start,
-                        end: end
-                    };
-                    $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-                }
-                $('#calendar').fullCalendar('unselect');
-
-                confirm.destroy =true;
-                modal.css("display", "none");
-                addEvent = null;
-            }else{
-                alert("Title must not be empty.");
-
-            }
-        });
-        return 1;
-    }
-
 });
 
+function getFormattedDate(date) {
+    return date.getFullYear() + "-" + ( ("0" + (date.getMonth() + 1)).slice(-2) ) + "-" + ( ("0" + (date.getDate() +1)).slice(-2) );
+}
 
-// function storedsEvent() {
-//     var events = getAllEvents();
-//
-//     events[events.length] = {"title":"Meeting #4", "description": "Meeting 4"};
-//     localStorage.setItem("events",JSON.stringify(events));
-//
-//     var storedNames = JSON.parse(localStorage.getItem("events"));
-//     console.log(storedNames);
-// }
+function saveEvents(events) {
+    var newEvents = [];
+    for(var roll=0; roll<events.length; roll++) {
+        var dateStart = events[roll].start['_d'];
+        var dateEnd;
+        if( events[roll].end == null) {
+            dateEnd = dateStart;
+            dateEnd.setDate(dateEnd.getDate() + 1);
+        } else {
+            dateEnd = events[roll].end['_d'];
+        }
+
+         newEvents[roll] = {
+             "title": events[roll].title,
+             "start": getFormattedDate(dateStart),
+             "end": getFormattedDate(dateEnd)
+         };
+    }
+    // localStorage.clear();
+    localStorage.setItem("events",JSON.stringify(newEvents));
+
+}
 
 function getAllEvents() {
+    // localStorage.setItem("events",JSON.stringify(defaultEvents()));  //uncomment to replace all with default events
     var storedEvents = JSON.parse(localStorage.getItem("events"));
     return storedEvents;
 }
@@ -106,100 +99,100 @@ function defaultEvents() {
         {
             id: 1,
             title: 'Eidul-Fitr',
-            description: '',
-            start: '2017-06-24'
+            start: '2017-06-24',
+            end: '2017-06-25'
         },
         {
-            title: 'Ninoy Aquino Day',
-            description: '',
-            start: '2017-08-21'
+            title: 'Ninoy Aquino Day', 
+            start: '2017-08-21',
+            end: '2017-08-22'
         },
-		
+
         {
             title: 'National Heroes Day',
-            description: '',
-            start: '2017-08-26'
+            start: '2017-08-26',
+            end: '2017-08-27'
         },
         {
             title: 'Id-Ul-Adha',
-            description: '',
-            start: '2017-09-01'
+            start: '2017-09-01',
+            end: '2017-09-02'
         },
         {
             title: 'Amun Jadid',
-            description: '',
-            start: '2017-09-21'
+            start: '2017-09-21',
+            end: '2017-09-22'
         },
         {
             title: 'All Saints Day',
-            description: '',
-            start: '2017-11-01'
+            start: '2017-11-01',
+            end: '2017-11-02'
         },
         {
             title: 'Bonifacio Day',
-            description: '',
-            start: '2017-11-30'
+            start: '2017-11-30',
+            end: '2017-12-01'
         },
         {
             title: 'Maulid un-Nabi',
-            description: '',
-            start: '2017-11-30'
+            start: '2017-11-30',
+            end: '2017-12-01'
         },
         {
             title: 'Christmas Eve',
-            description: '',
-            start: '2017-12-24'
+            start: '2017-12-24',
+            end: '2017-12-25'
         },
         {
             title: 'Christmas Day',
-            description: '',
-            start: '2017-12-25'
+            start: '2017-12-25',
+            end: '2017-12-26'
         },
         {
             title: 'New Years Day',
-            description: '',
-            start: '2018-01-01'
+            start: '2018-01-01',
+            end: '2018-01-02'
         },
         {
             title: 'Chinese Lunar New Years Day',
-            description: '',
-            start: '2018-02-16'
+            start: '2018-02-16',
+            end: '2018-02-17'
         },
         {
             title: 'Maundy Thursday',
-            description: '',
-            start: '2018-04-29'
+            start: '2018-04-29',
+            end: '2018-04-30'
         },
         {
             title: 'Good Friday',
-            description: '',
-            start: '2018-04-30'
+            start: '2018-04-30',
+            end: '2018-05-01'
         },
-		
+
         {
             title: 'The Day of Valor',
-            description: '',
-            start: '2018-04-09'
+            start: '2018-04-09',
+            end: '2018-04-10'
         },
         {
             title: 'Lailatul Isra Wal Mi Raj',
-            description: '',
-            start: '2018-04-12'
+            start: '2018-04-12',
+            end: '2018-04-13'
         },
         {
             title: 'Labor Day',
-            description: '',
-            start: '2018-05-01'
+            start: '2018-05-01',
+            end: '2018-05-02'
         },
         {
             title: 'Independence Day',
-            description: '',
-            start: '2018-06-12'
+            start: '2018-06-12',
+            end: '2018-06-13'
         },
         {
             title: 'Eidul-Fitr',
-            description: '',
-            start: '2018-06-13'
+            start: '2018-06-13',
+            end: '2018-06-14'
         },
     ];
 }
