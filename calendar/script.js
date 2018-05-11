@@ -13,11 +13,17 @@ $(document).ready(function() {
 
     var calendar        = $('#calendar');
     var colorPicker     = $('#colorPicker');
+    var colorPicker2    = $('#colorPicker2');
+    var color           = $('#colorInput');
+    var colorEdit       = $('#colorInputEdit');
 
-    //
-    // colorPicker.tinycolorpicker();
-    // var picker = colorPicker.data("plugin_tinycolorpicker");
-    // picker.setColor("#0391ce");
+
+    colorPicker.tinycolorpicker();
+    colorPicker2.tinycolorpicker();
+    var picker  = colorPicker.data("plugin_tinycolorpicker");
+    var picker2 = colorPicker2.data("plugin_tinycolorpicker");
+    picker.setColor("#0391ce");
+    picker2.setColor("#0391ce");
 
     calendar.fullCalendar({
         header: {
@@ -42,14 +48,14 @@ $(document).ready(function() {
                         eventData = {
                             title: title,
                             start: getFormattedDate(startDate),
-                            end: getFormattedDate(endDate)
-
+                            end: getFormattedDate(endDate),
+                            color: color.val()
                         };
                         calendar.fullCalendar('renderEvent', eventData, true); // stick? = true
+
                     }
                     calendar.fullCalendar('unselect');
                     modal.css("display", "none");
-
                     saveEvents();
                     confirm.off();
                 } else{
@@ -112,6 +118,7 @@ $(document).ready(function() {
         var deleteEvent = $('#delete-event');
 
         editedTitle.val(event['title']);
+        picker2.setColor(event['color']);
         editEventModal.css('display', 'block');
 
         confirmEdit.on('click', function (e) {
@@ -119,6 +126,7 @@ $(document).ready(function() {
             var newTitle = replace_whitespaces(newTitleInput.val());
             if(newTitle != "") {
                 event.title = newTitle;
+                event.color = colorEdit.val();
                 calendar.fullCalendar('updateEvent', event);
                 saveEvents();
                 alert("Edit Successful!");
@@ -179,7 +187,8 @@ function saveEvents() {
          newEvents[roll] = {
              "title": events[roll].title,
              "start": getFormattedDate(dateStart),
-             "end": getFormattedDate(dateEnd)
+             "end"  : getFormattedDate(dateEnd),
+             "color": events[roll].color
          };
     }
     localStorage.setItem("events",JSON.stringify(newEvents));
