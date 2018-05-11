@@ -111,11 +111,11 @@ textarea:focus, input:focus{
 }
 
 .button-warning:hover{
-    background-color: #fd7e14;
+    background-color: #17ad8f;
 }
 
 .button-warning {
-    background-color: #ffc107;
+    background-color: #1abc9c;
     border: none;
     padding: 10px;
     border-radius: 5px;

@@ -31,16 +31,18 @@ td {
     padding: 0 10px 10px 10px;
 }
 
-.fc-day.fc-sun {
-    background-color: whitesmoke !important;
-    opacity: 0.4;
+.fc-sun {
+    color: red;
 }
 
+/*.fc-day.fc-sun {*/
+    /*background-color: whitesmoke !important;*/
+    /*opacity: 0.4;*/
+/*}*/
+
 .fc-day.fc-today {
-    //background-color: #4285f4 !important;
-    background-color: #0984e3 !important;
-    opacity: 0.8;
-    color: #fff;
+    background-color: #fff !important;
+    /*color: #0984e3 !important;*/
 }
 
 .fc-day-header {
@@ -48,12 +50,13 @@ td {
 }
 
 .fc-today > span {
-      color:white;
-    font-weight: bold;
+    color: #00C853;
+    font-size: 24px;
 }
 
 .fc-day-number {
     font-size: 18px;
+    font-weight: bold;
 }
 
 .fc-center {
