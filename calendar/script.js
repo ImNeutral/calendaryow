@@ -26,7 +26,7 @@ $(document).ready(function() {
 
             confirm.on("click", function(){
                 var startDate = new Date(start['_i']);
-                var endDate = new Date(end['_i']);
+                var endDate   = new Date(end['_i']);
 
                 var title = replace_whitespaces($("#title").val());
                 $("#title").val('');
@@ -41,15 +41,24 @@ $(document).ready(function() {
                         calendar.fullCalendar('renderEvent', eventData, true); // stick? = true
                     }
                     calendar.fullCalendar('unselect');
-
-                    confirm.off();
                     modal.css("display", "none");
 
                     saveEvents();
                 } else{
                     alert("Title must not be empty.");
                 }
+                confirm.off();
             });
+
+            cancel.on('click', function () {
+                confirm.off();
+            });
+
+            span.onclick = function() {
+                modal.css("display", "none");
+                confirm.off();
+            };
+
         },
         eventDrop: function(){
             saveEvents();
@@ -67,23 +76,19 @@ $(document).ready(function() {
             // console.log( calDate.format('Y') );
 
             // console.log( $('#calendar').fullCalendar('clientEvents') );
-            // calendar.fullCalendar('eventSources', [calendar.fullCalendar('clientEvents'), defaultEvents(2020)]);
+            // console.log(calendar.fullCalendar('eventSources'));
             // saveEvents();
         },
         fixedWeekCount : false,
         editable: true,
         eventLimit: true,
-        eventSources: [
-            getAllEvents(),
-            // defaultEvents(2019)
-        ]
-        //events: getAllEvents()
+        events: getAllEvents()
     });
 
 
-    span.onclick = function() {
-        modal.css("display", "none");
-    };
+    // span.onclick = function() {
+    //     modal.css("display", "none");
+    // };
 
     replace_whitespaces = function(value){
         return value.replace(/\s+/, "");
@@ -116,17 +121,13 @@ $(document).ready(function() {
                 event.title = newTitle;
                 calendar.fullCalendar('updateEvent', event);
                 saveEvents();
-                editEventModal.css('display', 'none');
                 alert("Edit Successful!");
+                editEventModal.css('display', 'none');
+                offEditEvents();
             } else {
                 alert("Title must not be empty!");
             }
-            confirmEdit.off();
         });
-
-        // event.title = "hello";
-        // $('#calendar').fullCalendar('updateEvent', event);
-        // saveEvents();
         
         deleteEvent.on('click', function (e) {
             if(window.confirm("Delete this event?")) {
@@ -134,10 +135,25 @@ $(document).ready(function() {
                 saveEvents();
                 alert("Sucessfully deleted!");
                 editEventModal.css('display', 'none');
+                offEditEvents();
             }
         });
-    }
 
+        spanEdit.onclick = function() {
+            editEventModal.css('display', 'none');
+            offEditEvents();
+        };
+
+        cancelEdit.on("click", function(){
+            editEventModal.css('display', 'none');
+            offEditEvents()
+        });
+
+        function offEditEvents() {
+            confirmEdit.off();
+            deleteEvent.off();
+        }
+    }
 
 });
 
@@ -165,22 +181,30 @@ function saveEvents() {
              "end": getFormattedDate(dateEnd)
          };
     }
-    // localStorage.clear();
     localStorage.setItem("events",JSON.stringify(newEvents));
 }
 
 function getAllEvents() {
-    // localStorage.clear();
-    // localStorage.setItem("events",JSON.stringify(defaultEvents(2018)));  //uncomment to replace all with default events
+    // setDefault();
     var storedEvents = JSON.parse(localStorage.getItem("events"));
     if(storedEvents == null) {
-        var d = new Date();
-        var year = d.getFullYear();
-        localStorage.setItem("events",JSON.stringify(defaultEvents(year)));  //uncomment to replace all with default events
+        setDefault();
         storedEvents = JSON.parse(localStorage.getItem("events"));
     }
 
     return storedEvents;
+}
+
+function setDefault() {
+    // localStorage.clear();
+
+    var d = new Date();
+    var y = d.getFullYear();
+    var events = defaultEvents(y-1);
+    for (var i=y; i<y+5; i++) {
+        events = events.concat(defaultEvents(i));
+    }
+    localStorage.setItem("events",JSON.stringify( events ));
 }
 
 function defaultEvents(year) {

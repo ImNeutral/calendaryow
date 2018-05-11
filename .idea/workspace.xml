@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b95d025f-f1e8-4289-9cfb-99adc4bf4030" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/calendar/index.html" afterPath="$PROJECT_DIR$/calendar/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/calendar/modal.css" afterPath="$PROJECT_DIR$/calendar/modal.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/calendar/script.js" afterPath="$PROJECT_DIR$/calendar/script.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fullcalendar.js" afterPath="$PROJECT_DIR$/fullcalendar.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,6 +14,14 @@
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DatabaseView">
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
@@ -37,8 +42,8 @@
       <file leaf-file-name="script.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/calendar/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="173" column="72" lean-forward="false" selection-start-line="173" selection-start-column="72" selection-end-line="173" selection-end-column="72" />
+            <state relative-caret-position="454">
+              <caret line="194" column="24" lean-forward="true" selection-start-line="194" selection-start-column="24" selection-end-line="194" selection-end-column="24" />
               <folding>
                 <element signature="n#!!block;n#defaultEvents#0" expanded="false" />
               </folding>
@@ -66,23 +71,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fullcalendar.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fullcalendar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="17" column="38" lean-forward="true" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
-              <folding>
-                <marker date="1526018800829" expanded="true" signature="293785:293791" ph=" " />
-                <marker date="1526018800829" expanded="true" signature="457445:457451" ph=" " />
-                <marker date="1526018800829" expanded="true" signature="474750:474762" ph="..." />
-                <marker date="1526018800829" expanded="true" signature="510453:510459" ph=" " />
-                <marker date="1526018800829" expanded="true" signature="590927:590933" ph=" " />
-                <marker date="1526018800829" expanded="true" signature="600665:600682" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -104,6 +92,8 @@
       <find>'2018</find>
       <find>span-</find>
       <find>fc-title</find>
+      <find>success</find>
+      <find>cancel</find>
     </findStrings>
     <replaceStrings>
       <replace>,</replace>
@@ -319,12 +309,12 @@
       <workItem from="1525972660829" duration="9676000" />
       <workItem from="1525983956466" duration="1362000" />
       <workItem from="1525986519984" duration="2188000" />
-      <workItem from="1526015487469" duration="6539000" />
+      <workItem from="1526015487469" duration="10346000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45635000" />
+    <option name="totallyTimeSpent" value="49442000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
@@ -333,7 +323,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27231467" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -356,7 +346,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -666,22 +658,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/calendar/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="18" lean-forward="true" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/calendar/modal.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="109" column="20" lean-forward="true" selection-start-line="109" selection-start-column="20" selection-end-line="109" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/calendar/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="449">
@@ -695,8 +671,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fullcalendar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="17" column="38" lean-forward="true" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+        <state relative-caret-position="519">
+          <caret line="666" column="16" lean-forward="true" selection-start-line="666" selection-start-column="16" selection-end-line="666" selection-end-column="16" />
           <folding>
             <marker date="1526018800829" expanded="true" signature="293785:293791" ph=" " />
             <marker date="1526018800829" expanded="true" signature="457445:457451" ph=" " />
@@ -708,10 +684,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/calendar/modal.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="109" column="20" lean-forward="true" selection-start-line="109" selection-start-column="20" selection-end-line="109" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/calendar/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="18" lean-forward="true" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/calendar/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="173" column="72" lean-forward="false" selection-start-line="173" selection-start-column="72" selection-end-line="173" selection-end-column="72" />
+        <state relative-caret-position="454">
+          <caret line="194" column="24" lean-forward="true" selection-start-line="194" selection-start-column="24" selection-end-line="194" selection-end-column="24" />
           <folding>
             <element signature="n#!!block;n#defaultEvents#0" expanded="false" />
           </folding>
