@@ -164,6 +164,8 @@ $(document).ready(function() {
     }
 
 
+
+
 });
 
 function getFormattedDate(date) {
@@ -367,11 +369,14 @@ function defaultEvents(year) {
         var today_element = $("#today-event");
         today_element.empty();
         for (var i = 0; i <= events.length-1; i++) {
-            if(date == events[i].start)
+            if(date >= events[i].start && date <= events[i].end)
             {
                 var element = "<div class='today-event fc-event' data-notes=''>"+ events[i].title +"</div>";
                 today_element.append(element);
             }
         }
     }
+
+
+
 

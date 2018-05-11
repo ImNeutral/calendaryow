@@ -2518,6 +2518,7 @@ var dpComputableOptions = {
             next: util_1.stripHtmlEntities(dpOptions.nextText),
             today: util_1.stripHtmlEntities(dpOptions.currentText)
         };
+
     },
     // Produces format strings like "MMMM YYYY" -> "September 2014"
     monthYearFormat: function (dpOptions) {
