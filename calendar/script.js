@@ -11,7 +11,9 @@ $(document).ready(function() {
     var confirm         = $("#confirm-button");
     var cancel          = $("#cancel-button");
 
-    $('#calendar').fullCalendar({
+    var calendar        = $('#calendar');
+
+    calendar.fullCalendar({
         header: {
             left: 'prev',
             center: 'title',
@@ -36,9 +38,9 @@ $(document).ready(function() {
                             start: getFormattedDate(startDate),
                             end: getFormattedDate(endDate)
                         };
-                        $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+                        calendar.fullCalendar('renderEvent', eventData, true); // stick? = true
                     }
-                    $('#calendar').fullCalendar('unselect');
+                    calendar.fullCalendar('unselect');
 
                     confirm.off();
                     modal.css("display", "none");
@@ -60,10 +62,22 @@ $(document).ready(function() {
                 editEvent(event);
             });
         },
+        viewRender: function (view, element) {
+            // var calDate = calendar.fullCalendar('getDate');
+            // console.log( calDate.format('Y') );
+
+            // console.log( $('#calendar').fullCalendar('clientEvents') );
+            // calendar.fullCalendar('eventSources', [calendar.fullCalendar('clientEvents'), defaultEvents(2020)]);
+            // saveEvents();
+        },
         fixedWeekCount : false,
         editable: true,
-        eventLimit: true, // allow "more" link when too many events
-        events: getAllEvents()
+        eventLimit: true,
+        eventSources: [
+            getAllEvents(),
+            // defaultEvents(2019)
+        ]
+        //events: getAllEvents()
     });
 
 
@@ -100,7 +114,7 @@ $(document).ready(function() {
             var newTitle = replace_whitespaces(newTitleInput.val());
             if(newTitle != "") {
                 event.title = newTitle;
-                $('#calendar').fullCalendar('updateEvent', event);
+                calendar.fullCalendar('updateEvent', event);
                 saveEvents();
                 editEventModal.css('display', 'none');
                 alert("Edit Successful!");
@@ -156,114 +170,118 @@ function saveEvents() {
 }
 
 function getAllEvents() {
+    // localStorage.clear();
+    // localStorage.setItem("events",JSON.stringify(defaultEvents(2018)));  //uncomment to replace all with default events
     var storedEvents = JSON.parse(localStorage.getItem("events"));
-    if(storedEvents.length <= 0) {
-        localStorage.setItem("events",JSON.stringify(defaultEvents()));  //uncomment to replace all with default events
+    if(storedEvents == null) {
+        var d = new Date();
+        var year = d.getFullYear();
+        localStorage.setItem("events",JSON.stringify(defaultEvents(year)));  //uncomment to replace all with default events
         storedEvents = JSON.parse(localStorage.getItem("events"));
     }
 
     return storedEvents;
 }
 
-function defaultEvents() {
+function defaultEvents(year) {
     return [
         {
             id: 1,
             title: 'Eidul-Fitr',
-            start: '2017-06-24',
-            end: '2017-06-25'
+            start: year + '-06-24',
+            end:   year + '-06-25'
         },
         {
             title: 'Ninoy Aquino Day', 
-            start: '2017-08-21',
-            end: '2017-08-22'
+            start: year + '-08-21',
+            end:   year + '-08-22'
         },
 
         {
             title: 'National Heroes Day',
-            start: '2017-08-26',
-            end: '2017-08-27'
+            start: year + '-08-26',
+            end: year + '-08-27'
         },
         {
             title: 'Id-Ul-Adha',
-            start: '2017-09-01',
-            end: '2017-09-02'
+            start: year + '-09-01',
+            end: year + '-09-02'
         },
         {
             title: 'Amun Jadid',
-            start: '2017-09-21',
-            end: '2017-09-22'
+            start: year + '-09-21',
+            end: year + '-09-22'
         },
         {
             title: 'All Saints Day',
-            start: '2017-11-01',
-            end: '2017-11-02'
+            start: year + '-11-01',
+            end: year + '-11-02'
         },
         {
             title: 'Bonifacio Day',
-            start: '2017-11-30',
-            end: '2017-12-01'
+            start: year + '-11-30',
+            end: year + '-12-01'
         },
         {
             title: 'Maulid un-Nabi',
-            start: '2017-11-30',
-            end: '2017-12-01'
+            start: year + '-11-30',
+            end: year + '-12-01'
         },
         {
             title: 'Christmas Eve',
-            start: '2017-12-24',
-            end: '2017-12-25'
+            start: year + '-12-24',
+            end: year + '-12-25'
         },
         {
             title: 'Christmas Day',
-            start: '2017-12-25',
-            end: '2017-12-26'
+            start: year + '-12-25',
+            end: year + '-12-26'
         },
         {
             title: 'New Years Day',
-            start: '2018-01-01',
-            end: '2018-01-02'
+            start: year + '-01-01',
+            end: year + '-01-02'
         },
         {
             title: 'Chinese Lunar New Years Day',
-            start: '2018-02-16',
-            end: '2018-02-17'
+            start: year + '-02-16',
+            end: year + '-02-17'
         },
         {
             title: 'Maundy Thursday',
-            start: '2018-04-29',
-            end: '2018-04-30'
+            start: year + '-04-29',
+            end: year + '-04-30'
         },
         {
             title: 'Good Friday',
-            start: '2018-04-30',
-            end: '2018-05-01'
+            start: year + '-04-30',
+            end: year + '-05-01'
         },
 
         {
             title: 'The Day of Valor',
-            start: '2018-04-09',
-            end: '2018-04-10'
+            start: year + '-04-09',
+            end: year + '-04-10'
         },
         {
             title: 'Lailatul Isra Wal Mi Raj',
-            start: '2018-04-12',
-            end: '2018-04-13'
+            start: year + '-04-12',
+            end: year + '-04-13'
         },
         {
             title: 'Labor Day',
-            start: '2018-05-01',
-            end: '2018-05-02'
+            start: year + '-05-01',
+            end: year + '-05-02'
         },
         {
             title: 'Independence Day',
-            start: '2018-06-12',
-            end: '2018-06-13'
+            start: year + '-06-12',
+            end: year + '-06-13'
         },
         {
             title: 'Eidul-Fitr',
-            start: '2018-06-13',
-            end: '2018-06-14'
+            start: year + '-06-13',
+            end: year + '-06-14'
         },
     ];
 }
