@@ -340,3 +340,38 @@ function defaultEvents(year) {
 }
 
 
+ function getToday(){
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+
+            var yyyy = today.getFullYear();
+            if(dd<10){
+                dd='0'+dd;
+              } 
+            if(mm<10){
+              mm='0'+mm;
+            } 
+            var today = yyyy + '-' + mm + '-' + dd;
+            //dd+'/'+mm+'/'+yyyy;
+
+            return today;
+    }
+
+    getTodayEvents();
+
+    function getTodayEvents() {
+        var date = getToday();
+        var events_today = new Array();
+        var events = JSON.parse(localStorage.getItem("events"));
+        var today_element = $("#today-event");
+        today_element.empty();
+        for (var i = 0; i <= events.length-1; i++) {
+            if(date == events[i].start)
+            {
+                var element = "<div class='today-event fc-event' data-notes=''>"+ events[i].title +"</div>";
+                today_element.append(element);
+            }
+        }
+    }
+
