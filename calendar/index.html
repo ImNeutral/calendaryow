@@ -32,34 +32,33 @@
 
 <section class="modal-section">
   <div id="myModal" class="modal">
-      <div class="modal-content">
-        <span class="close" id="close">&times;</span>
-        <h4 id="modal-title" class="text-center modal-title">Add Event</h4>
+    <div class="modal-content">
+      <span class="close" id="close">&times;</span>
+      <h4 id="modal-title" class="text-center modal-title">Add Event</h4>
 
-        <div class="modal-inside">
-          <div class="modal-inside-div">
-              <input type="text" name="" placeholder="Title" id="title" />
+      <div class="modal-inside">
+        <div class="modal-inside-div">
+          <input type="text" name="" placeholder="Title" id="title" />
 
-              <span>Font Color:</span>
-              <div id="colorPicker">
-                <a class="color"><div class="colorInner"></div></a>
-                <div class="track"></div>
-                <ul class="dropdown"><li></li></ul>
-                <input type="hidden" class="colorInput"/>
-              </div>
+          <span>Background Color:</span>
+          <div id="colorPicker" class="colorPicker">
+            <a class="color"><div class="colorInner"></div></a>
+            <div class="track"></div>
+            <ul class="dropdown"><li></li></ul>
+            <input type="hidden" class="colorInput" id="colorInput"/>
           </div>
+        </div>
 
-          <div style="text-align: center; margin-top: 20px;">
-            <div style="float:right;">
-              <button id="confirm-button" class="modal-button-primary">Confirm</button>
-              <button id="cancel-button" class="modal-button-danger">Cancel</button>
-            </div>
+        <div style="text-align: center; margin-top: 20px;">
+          <div style="float:right;">
+            <button id="confirm-button" class="modal-button-primary">Confirm</button>
+            <button id="cancel-button" class="modal-button-danger">Cancel</button>
+          </div>
         </div>
       </div>
-      </div>
     </div>
-
   </div>
+
 
 
   <div id="editEvent" class="modal">
@@ -70,6 +69,14 @@
         <div class="modal-inside">
           <div class="modal-inside-div">
             <input type="text" name="" placeholder="Title" id="edited-title" />
+
+            <span>Background Color:</span>
+            <div id="colorPicker2" class="colorPicker">
+              <a class="color"><div class="colorInner"></div></a>
+              <div class="track"></div>
+              <ul class="dropdown"><li></li></ul>
+              <input type="hidden" class="colorInput" id="colorInputEdit"/>
+            </div>
           </div>
           <div style="text-align: center;">
             <div style="float:right;">
@@ -80,8 +87,6 @@
           </div>
         </div>
     </div>
-  </div>
-
   </div>
 
 </section>
