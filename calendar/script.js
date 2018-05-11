@@ -12,6 +12,12 @@ $(document).ready(function() {
     var cancel          = $("#cancel-button");
 
     var calendar        = $('#calendar');
+    var colorPicker     = $('#colorPicker');
+
+    //
+    // colorPicker.tinycolorpicker();
+    // var picker = colorPicker.data("plugin_tinycolorpicker");
+    // picker.setColor("#0391ce");
 
     calendar.fullCalendar({
         header: {
@@ -37,6 +43,7 @@ $(document).ready(function() {
                             title: title,
                             start: getFormattedDate(startDate),
                             end: getFormattedDate(endDate)
+
                         };
                         calendar.fullCalendar('renderEvent', eventData, true); // stick? = true
                     }
@@ -44,10 +51,10 @@ $(document).ready(function() {
                     modal.css("display", "none");
 
                     saveEvents();
+                    confirm.off();
                 } else{
                     alert("Title must not be empty.");
                 }
-                confirm.off();
             });
 
             cancel.on('click', function () {
@@ -58,6 +65,7 @@ $(document).ready(function() {
                 modal.css("display", "none");
                 confirm.off();
             };
+
 
         },
         eventDrop: function(){
@@ -70,14 +78,6 @@ $(document).ready(function() {
             element.bind('dblclick', function() {
                 editEvent(event);
             });
-        },
-        viewRender: function (view, element) {
-            // var calDate = calendar.fullCalendar('getDate');
-            // console.log( calDate.format('Y') );
-
-            // console.log( $('#calendar').fullCalendar('clientEvents') );
-            // console.log(calendar.fullCalendar('eventSources'));
-            // saveEvents();
         },
         fixedWeekCount : false,
         editable: true,
@@ -155,6 +155,7 @@ $(document).ready(function() {
         }
     }
 
+
 });
 
 function getFormattedDate(date) {
@@ -185,7 +186,7 @@ function saveEvents() {
 }
 
 function getAllEvents() {
-    // setDefault();
+    // localStorage.clear();
     var storedEvents = JSON.parse(localStorage.getItem("events"));
     if(storedEvents == null) {
         setDefault();
@@ -213,99 +214,120 @@ function defaultEvents(year) {
             id: 1,
             title: 'Eidul-Fitr',
             start: year + '-06-24',
-            end:   year + '-06-25'
+            end:   year + '-06-25',
+            color: '#0391ce'
         },
         {
             title: 'Ninoy Aquino Day', 
             start: year + '-08-21',
-            end:   year + '-08-22'
+            end:   year + '-08-22',
+            color: '#0391ce'
         },
 
         {
             title: 'National Heroes Day',
             start: year + '-08-26',
-            end: year + '-08-27'
+            end: year + '-08-27',
+            color: '#0391ce'
         },
         {
             title: 'Id-Ul-Adha',
             start: year + '-09-01',
-            end: year + '-09-02'
+            end: year + '-09-02',
+            color: '#0391ce'
         },
         {
             title: 'Amun Jadid',
             start: year + '-09-21',
-            end: year + '-09-22'
+            end: year + '-09-22',
+            color: '#0391ce'
         },
         {
             title: 'All Saints Day',
             start: year + '-11-01',
-            end: year + '-11-02'
+            end: year + '-11-02',
+            color: '#0391ce'
         },
         {
             title: 'Bonifacio Day',
             start: year + '-11-30',
-            end: year + '-12-01'
+            end: year + '-12-01',
+            color: '#0391ce'
         },
         {
             title: 'Maulid un-Nabi',
             start: year + '-11-30',
-            end: year + '-12-01'
+            end: year + '-12-01',
+            color: '#0391ce'
         },
         {
             title: 'Christmas Eve',
             start: year + '-12-24',
-            end: year + '-12-25'
+            end: year + '-12-25',
+            color: '#0391ce'
         },
         {
             title: 'Christmas Day',
             start: year + '-12-25',
-            end: year + '-12-26'
+            end: year + '-12-26',
+            color: '#0391ce'
         },
         {
             title: 'New Years Day',
             start: year + '-01-01',
-            end: year + '-01-02'
+            end: year + '-01-02',
+            color: '#0391ce'
         },
         {
             title: 'Chinese Lunar New Years Day',
             start: year + '-02-16',
-            end: year + '-02-17'
+            end: year + '-02-17',
+            color: '#0391ce'
         },
         {
             title: 'Maundy Thursday',
             start: year + '-04-29',
-            end: year + '-04-30'
+            end: year + '-04-30',
+            color: '#0391ce'
         },
         {
             title: 'Good Friday',
             start: year + '-04-30',
-            end: year + '-05-01'
+            end: year + '-05-01',
+            color: '#0391ce'
         },
 
         {
             title: 'The Day of Valor',
             start: year + '-04-09',
-            end: year + '-04-10'
+            end: year + '-04-10',
+            color: '#0391ce'
         },
         {
             title: 'Lailatul Isra Wal Mi Raj',
             start: year + '-04-12',
-            end: year + '-04-13'
+            end: year + '-04-13',
+            color: '#0391ce'
         },
         {
             title: 'Labor Day',
             start: year + '-05-01',
-            end: year + '-05-02'
+            end: year + '-05-02',
+            color: '#0391ce'
         },
         {
             title: 'Independence Day',
             start: year + '-06-12',
-            end: year + '-06-13'
+            end: year + '-06-13',
+            color: '#0391ce'
         },
         {
             title: 'Eidul-Fitr',
             start: year + '-06-13',
-            end: year + '-06-14'
+            end: year + '-06-14',
+            color: '#0391ce'
         },
     ];
 }
+
+

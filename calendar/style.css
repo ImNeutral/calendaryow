@@ -126,3 +126,18 @@ td {
     margin-top: 10px;
     max-width: 97%;
 }
+
+
+.jscolor {
+    cursor: pointer;
+}
+
+#title {
+    margin-bottom: 10px;
+}
+
+#colorPicker {
+    float: right;
+    margin: 10px;
+    margin-right: 75%;
+}

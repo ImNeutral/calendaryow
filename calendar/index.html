@@ -4,6 +4,7 @@
   <meta charset='utf-8' />
   <link href='../fullcalendar.min.css' rel='stylesheet' />
   <link href='../fullcalendar.print.min.css' rel='stylesheet' media='print' />
+  <link rel="stylesheet" href="colorpicker/tinycolorpicker.css" type="text/css" media="screen"/>
   <link rel="stylesheet" href="style.css">
   <link href='modal.css' rel='stylesheet' />
   <title>Calendaryow</title>
@@ -40,12 +41,21 @@
         <div class="modal-inside">
           <div class="modal-inside-div">
               <input type="text" name="" placeholder="Title" id="title" />
+
+              <span>Font Color:</span>
+              <div id="colorPicker">
+                <a class="color"><div class="colorInner"></div></a>
+                <div class="track"></div>
+                <ul class="dropdown"><li></li></ul>
+                <input type="hidden" class="colorInput"/>
+              </div>
           </div>
-          <div style="text-align: center;">
-          <div style="float:right;">
-            <button id="confirm-button" class="modal-button-primary">Confirm</button>
-            <button id="cancel-button" class="modal-button-danger">Cancel</button>
-          </div>
+
+          <div style="text-align: center; margin-top: 20px;">
+            <div style="float:right;">
+              <button id="confirm-button" class="modal-button-primary">Confirm</button>
+              <button id="cancel-button" class="modal-button-danger">Cancel</button>
+            </div>
         </div>
       </div>
       </div>
@@ -80,10 +90,11 @@
 
 </body>
 
-  <script src='../lib/moment.min.js'></script>
-  <script src='../lib/jquery.min.js'></script>
-  <script src='../fullcalendar.js'></script>
 
+  <script src='../lib/moment.min.js'></script>
+  <script src='../lib/jquery-latest.min.js'></script>
+  <script src='../fullcalendar.js'></script>
+  <script src="colorpicker/jquery.tinycolorpicker.min.js"></script>
   <script src="script.js"></script>
 </html>
 
