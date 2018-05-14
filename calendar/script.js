@@ -172,12 +172,7 @@ $(document).ready(function() {
         }
     }
 
-
-
-
-});
-
-function getFormattedDate(date) {
+    function getFormattedDate(date) {
     date.setDate( date.getDate() + 1 );
     return date.getFullYear() + "-" + ( ("0" + (date.getMonth() + 1)).slice(-2) ) + "-" + ( ("0" + (date.getDate())).slice(-2) );
 }
@@ -369,22 +364,80 @@ function defaultEvents(year) {
     return today;
 }
 
-getTodayEvents();
+// modifed this part here
+
+ function getToday(){
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+
+    var yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd;
+      }
+    if(mm<10){
+      mm='0'+mm;
+    }
+    var today = yyyy + '-' + mm + '-' + dd;
+    //dd+'/'+mm+'/'+yyyy;
+
+    return today;
+}
+
+
+
+
+function getAllCalendarEvents()
+{
+    return calendar.fullCalendar('clientEvents') ;
+}
+
 
 function getTodayEvents() {
-    var date = getToday();
-    var events_today = new Array();
-    var events = JSON.parse(localStorage.getItem("events"));
-    var today_element = $("#today-event");
-    today_element.empty();
-    for (var i = 0; i <= events.length-1; i++) {
-        if(date >= events[i].start && date <= events[i].end)
-        {
-            var element = "<div class='today-event fc-event' data-notes='' style='background-color: " + events[i].color + ";'>"+ events[i].title +"</div>";
-            today_element.append(element);
+
+        var array = new Array();
+        array = getAllCalendarEvents();
+
+        var date = getToday();
+        var events_today = new Array();
+        var events = JSON.parse(localStorage.getItem("events"));
+        var today_element = $("#today-event");
+        today_element.empty();
+        
+        for (var i = 0; i <= array.length-1; i++) {
+            if(date >= array[i].start._i&& date <= array[i].end._i)
+            {
+            
+                var element = "<div class='today-event fc-event'" +
+                "data-title='" + array[i].title + 
+                "' data-id='" +
+                array[i]._id +
+                "' style='background-color: " + events[i].color + ";'>"+ events[i].title +"</div>";
+                today_element.append(element);
+            }
         }
-    }
+
+        $(".today-event").on('dblclick', function(event){
+            console.log("what the fuck");
+            var element = $(event.currentTarget);
+            var event_match = $("#calendar").fullCalendar(
+                                'clientEvents', 
+                                element.data('id')
+                            );
+            editEvent(event_match[0]);
+        });
 }
+
+
+
+getTodayEvents();
+
+
+
+});
+
+
+
 
 
 
