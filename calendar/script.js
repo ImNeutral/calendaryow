@@ -59,6 +59,7 @@ $(document).ready(function() {
                     calendar.fullCalendar('unselect');
                     modal.css("display", "none");
                     saveEvents();
+                    getTodayEvents();
                     confirm.off();
                 } else{
                     alert("Title must not be empty.");
@@ -74,19 +75,19 @@ $(document).ready(function() {
                 confirm.off();
             };
 
-
         },
         eventDrop: function(){
             saveEvents();
+            getTodayEvents();
         },
         eventResize: function(){
             saveEvents();
+            getTodayEvents();
         },
         eventRender: function(event, element) {
             element.bind('click', function() {
                 editEvent(event);
             });
-
             // element.bind('dblclick', function() {
             //     editEvent(event);
             // });
@@ -138,6 +139,7 @@ $(document).ready(function() {
                 alert("Edit Successful!");
                 editEventModal.css('display', 'none');
                 offEditEvents();
+
             } else {
                 alert("Title must not be empty!");
             }
@@ -166,6 +168,7 @@ $(document).ready(function() {
         function offEditEvents() {
             confirmEdit.off();
             deleteEvent.off();
+            getTodayEvents();
         }
     }
 
@@ -366,22 +369,22 @@ function defaultEvents(year) {
     return today;
 }
 
-    getTodayEvents();
+getTodayEvents();
 
-    function getTodayEvents() {
-        var date = getToday();
-        var events_today = new Array();
-        var events = JSON.parse(localStorage.getItem("events"));
-        var today_element = $("#today-event");
-        today_element.empty();
-        for (var i = 0; i <= events.length-1; i++) {
-            if(date >= events[i].start && date <= events[i].end)
-            {
-                var element = "<div class='today-event fc-event' data-notes=''>"+ events[i].title +"</div>";
-                today_element.append(element);
-            }
+function getTodayEvents() {
+    var date = getToday();
+    var events_today = new Array();
+    var events = JSON.parse(localStorage.getItem("events"));
+    var today_element = $("#today-event");
+    today_element.empty();
+    for (var i = 0; i <= events.length-1; i++) {
+        if(date >= events[i].start && date <= events[i].end)
+        {
+            var element = "<div class='today-event fc-event' data-notes='' style='background-color: " + events[i].color + ";'>"+ events[i].title +"</div>";
+            today_element.append(element);
         }
     }
+}
 
 
 
