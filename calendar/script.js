@@ -83,9 +83,13 @@ $(document).ready(function() {
             saveEvents();
         },
         eventRender: function(event, element) {
-            element.bind('dblclick', function() {
+            element.bind('click', function() {
                 editEvent(event);
             });
+
+            // element.bind('dblclick', function() {
+            //     editEvent(event);
+            // });
         },
         fixedWeekCount : false,
         editable: true,
