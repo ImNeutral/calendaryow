@@ -25,6 +25,8 @@ $(document).ready(function() {
     picker.setColor("#0391ce");
     picker2.setColor("#0391ce");
 
+
+
     calendar.fullCalendar({
         header: {
             left: 'prev',
@@ -343,22 +345,22 @@ function defaultEvents(year) {
 
 
  function getToday(){
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth()+1; //January is 0!
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
 
-            var yyyy = today.getFullYear();
-            if(dd<10){
-                dd='0'+dd;
-              } 
-            if(mm<10){
-              mm='0'+mm;
-            } 
-            var today = yyyy + '-' + mm + '-' + dd;
-            //dd+'/'+mm+'/'+yyyy;
-
-            return today;
+    var yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd;
+      }
+    if(mm<10){
+      mm='0'+mm;
     }
+    var today = yyyy + '-' + mm + '-' + dd;
+    //dd+'/'+mm+'/'+yyyy;
+
+    return today;
+}
 
     getTodayEvents();
 
