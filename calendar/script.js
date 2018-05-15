@@ -22,6 +22,12 @@ $(document).ready(function() {
     var ccTitle         = $('#cc-title');
     var ccConfirm       = $('#cc-confirm');
     var ccCancel        = $('#cc-cancel');
+    var ccClose         = $("#close-cc")[0];
+
+    var successModal    = $('#successModal');
+    var successOperation = $('#success-operation');
+    var successOk       = $('#success-ok');
+    var successClose         = $("#success-close")[0];
 
 
     colorPicker.tinycolorpicker();
@@ -63,12 +69,13 @@ $(document).ready(function() {
 
                     }
                     calendar.fullCalendar('unselect');
-                    modal.css("display", "none");
+                    modalOut(modal);
                     saveEvents();
                     getTodayEvents();
                     confirm.off();
                 } else{
-                    alert("Title must not be empty.");
+                    successOperation.text("Title must not be empty!");
+                    modalIn(successModal);
                 }
             });
 
@@ -77,7 +84,7 @@ $(document).ready(function() {
             });
 
             span.onclick = function() {
-                modal.css("display", "none");
+                modalOut(modal);
                 confirm.off();
             };
 
@@ -94,9 +101,6 @@ $(document).ready(function() {
             element.bind('click', function() {
                 editEvent(event);
             });
-            // element.bind('dblclick', function() {
-            //     editEvent(event);
-            // });
         },
         fixedWeekCount : false,
         editable: true,
@@ -109,15 +113,27 @@ $(document).ready(function() {
     };
 
     cancel.on("click", function(){
-        modal.css("display", "none");
+        modalOut(modal);
+    });
+
+    cancelEdit.on("click", function(){
+        modalOut(editEventModal);
     });
 
     spanEdit.onclick = function() {
-        editEventModal.css("display", "none");
+        modalOut(editEventModal);
     };
 
-    cancelEdit.on("click", function(){
-        editEventModal.css("display", "none");
+    ccClose.onclick = function(){
+        modalOut(ccModal);
+    };
+
+    successClose.onclick = function(){
+        modalOut(successModal);
+    };
+
+    successOk.on('click', function () {
+        modalOut(successModal);
     });
 
 
@@ -137,32 +153,52 @@ $(document).ready(function() {
                 event.color = colorEdit.val();
                 calendar.fullCalendar('updateEvent', event);
                 saveEvents();
-                alert("Edit Successful!");
-                editEventModal.css('display', 'none');
+
+                successOperation.text("Successfully Edited Event!");
+                modalIn(successModal);
+
+                modalOut(editEventModal);
                 offEditEvents();
 
             } else {
-                alert("Title must not be empty!");
+                successOperation.text("Title must not be empty!");
+                modalIn(successModal);
             }
         });
         
         deleteEvent.on('click', function (e) {
-            if(window.confirm("Delete this event?")) {
+            ccTitle.text(event.title);
+            modalIn(ccModal);
+            ccConfirm.on('click', function () {
                 $('#calendar').fullCalendar('removeEvents', [event['_id'] ]);
                 saveEvents();
-                alert("Sucessfully deleted!");
-                editEventModal.css('display', 'none');
-                offEditEvents();
-            }
+                ccConfirm.off();
+                modalOut(ccModal);
+                modalOut(editEventModal);
+
+                successOperation.text("Successfully Deleted Event!");
+                modalIn(successModal);
+            });
+            ccCancel.on('click', function () {
+                ccConfirm.off();
+                modalOut(ccModal);
+            });
+            // if(window.confirm("Delete this event?")) {
+            //     $('#calendar').fullCalendar('removeEvents', [event['_id'] ]);
+            //     saveEvents();
+            //     alert("Sucessfully deleted!");
+            //     modalOut(editEventModal);
+            //     offEditEvents();
+            // }
         });
 
         spanEdit.onclick = function() {
-            editEventModal.css('display', 'none');
+            modalOut(editEventModal);
             offEditEvents();
         };
 
         cancelEdit.on("click", function(){
-            editEventModal.css('display', 'none');
+            modalOut(editEventModal);
             offEditEvents()
         });
 
@@ -413,14 +449,12 @@ $(document).ready(function() {
     getTodayEvents();
 
 
-    // ccModalIn();
-    function ccModalIn() {
-        ccModal.css("display", "block");
-        modal.css("display", "block");
+    function modalIn(element) {
+        element.css('display', 'block');
     }
 
-    function ccModalOut() {
-        ccModal.css("display", "none");
+    function modalOut(element) {
+        element.css('display', 'none')
     }
 
 

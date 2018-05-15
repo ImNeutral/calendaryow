@@ -1,122 +1,139 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset='utf-8' />
-  <link href='../fullcalendar.min.css' rel='stylesheet' />
-  <link href='../fullcalendar.print.min.css' rel='stylesheet' media='print' />
-  <link rel="stylesheet" href="colorpicker/tinycolorpicker.css" type="text/css" media="screen"/>
-  <link rel="stylesheet" href="style.css">
-  <link href='modal.css' rel='stylesheet' />
-  <title>Calendaryow</title>
+    <meta charset='utf-8' />
+    <link href='../fullcalendar.min.css' rel='stylesheet' />
+    <link href='../fullcalendar.print.min.css' rel='stylesheet' media='print' />
+    <link rel="stylesheet" href="colorpicker/tinycolorpicker.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="style.css">
+    <link href='modal.css' rel='stylesheet' />
+    <title>Calendaryow</title>
 </head>
 <body>
 <div style="width:100%;height:100%;margin:0 auto;overflow: auto;margin:0 auto;">
-  <div id="leftist">
-    <div id="menu-left">
-         <h3 class="leftist-title">Today's Event</h3>
-      <hr>
-      <div id="today-event"></div>
+    <div id="leftist">
+        <div id="menu-left">
+            <h3 class="leftist-title">Today's Event</h3>
+            <hr>
+            <div id="today-event"></div>
+        </div>
     </div>
-  </div>
-  <div id="rightist">
-     <div id='calendar'></div>   
-  </div>
+    <div id="rightist">
+        <div id='calendar'></div>
+    </div>
 </div>
 
 
 <audio id="next-prev-button-sound" style="display:none;">
-  <source src="audio/next_prev.mp3" type="audio/ogg">
-  <source src="audio/next_prev.mp3" type="audio/mpeg">
-  Your browser does not support the audio tag.
+    <source src="audio/next_prev.mp3" type="audio/ogg">
+    <source src="audio/next_prev.mp3" type="audio/mpeg">
+    Your browser does not support the audio tag.
 </audio>
 
 <section class="modal-section">
-  <div id="myModal" class="modal">
-    <div class="modal-content">
-      <span class="close" id="close">&times;</span>
-      <h4 id="modal-title" class="text-center modal-title">Add Event</h4>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close">&times;</span>
+            <h4 id="modal-title" class="text-center modal-title">Add Event</h4>
 
-      <div class="modal-inside">
-        <div class="modal-inside-div">
-          <input type="text" name="" placeholder="Title" id="title" />
+            <div class="modal-inside">
+                <div class="modal-inside-div">
+                    <input type="text" name="" placeholder="Title" id="title" />
 
-          <span>Background Color:</span>
-          <div id="colorPicker" class="colorPicker">
-            <a class="color"><div class="colorInner"></div></a>
-            <div class="track">
+                    <span>Background Color:</span>
+                    <div id="colorPicker" class="colorPicker">
+                        <a class="color"><div class="colorInner"></div></a>
+                        <div class="track">
+                        </div>
+                        <ul class="dropdown"><li></li></ul>
+                        <input type="hidden" class="colorInput" id="colorInput"/>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <div style="float:right;">
+                        <button id="confirm-button" class="modal-button-primary">Add</button>
+                        <button id="cancel-button" class="modal-button-danger">Cancel</button>
+                    </div>
+                </div>
             </div>
-            <ul class="dropdown"><li></li></ul>
-            <input type="hidden" class="colorInput" id="colorInput"/>
-          </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 20px;">
-          <div style="float:right;">
-            <button id="confirm-button" class="modal-button-primary">Confirm</button>
-            <button id="cancel-button" class="modal-button-danger">Cancel</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="editEvent" class="modal">
-    <div class="modal-content">
-      <span class="close" id="close-edit">&times;</span>
-      <h4 class="text-center modal-title">Edit Event</h4>
-
-        <div class="modal-inside">
-          <div class="modal-inside-div">
-            <input type="text" name="" placeholder="Title" id="edited-title" />
-
-            <span>Background Color:</span>
-            <div id="colorPicker2" class="colorPicker">
-              <a class="color"><div class="colorInner"></div></a>
-              <div class="track"></div>
-              <ul class="dropdown"><li></li></ul>
-              <input type="hidden" class="colorInput" id="colorInputEdit"/>
-            </div>
-          </div>
-          <div style="text-align: center;">
-            <div style="float:right;">
-              <button id="confirm-edit" class="modal-button-primary">Confirm Edit</button>
-              <button id="delete-event" class="modal-button-primary button-warning">Delete Event</button>
-              <button id="cancel-edit" class="modal-button-danger">Cancel</button>
-            </div>
-          </div>
         </div>
     </div>
-  </div>
 
-  <div id="cancelConfirmModal" class="modal">
-    <div class="modal-content" style="margin-top: 2%;">
-      <span class="close" id="close-cc">&times;</span>
-      <h4 class="text-center modal-title" id="cc-operation">Delete Event?</h4>
+    <div id="editEvent" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-edit">&times;</span>
+            <h4 class="text-center modal-title">Edit Event</h4>
 
-      <div class="modal-inside">
-        <div class="modal-inside-div">
-          <h3 type="text" name="" id="cc-title">Test Title</h3>
+            <div class="modal-inside">
+                <div class="modal-inside-div">
+                    <input type="text" name="" placeholder="Title" id="edited-title" />
+
+                    <span>Background Color:</span>
+                    <div id="colorPicker2" class="colorPicker">
+                        <a class="color"><div class="colorInner"></div></a>
+                        <div class="track"></div>
+                        <ul class="dropdown"><li></li></ul>
+                        <input type="hidden" class="colorInput" id="colorInputEdit"/>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="float:right;">
+                        <button id="confirm-edit" class="modal-button-primary">Confirm Edit</button>
+                        <button id="delete-event" class="modal-button-primary button-warning">Delete Event</button>
+                        <button id="cancel-edit" class="modal-button-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div style="text-align: center;">
-          <div style="float:right;">
-            <button id="cc-confirm" class="modal-button-primary">Confirm</button>
-            <button id="cc-cancel" class="modal-button-danger">Cancel</button>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
+
+    <div id="cancelConfirmModal" class="modal">
+        <div class="modal-content" style="margin-top: 2%;">
+            <span class="close" id="close-cc">&times;</span>
+            <h4 class="text-center modal-title" id="cc-operation">Delete this Event?</h4>
+
+            <div class="modal-inside">
+                <div class="modal-inside-div" style="height: 35%;">
+                    <h3 type="text" name="" id="cc-title" style="font-weight: 100;">Test Title</h3>
+                </div>
+                <div style="text-align: center;">
+                    <hr>
+                    <div style="float:right;">
+                        <button id="cc-confirm" class="modal-button-primary">Delete</button>
+                        <button id="cc-cancel" class="modal-button-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content" style="margin-top: 2%; height: 120px;">
+            <span class="close" id="success-close">&times;</span>
+            <h4 class="text-center modal-title" id="success-operation">Success!</h4>
+
+            <div class="modal-inside">
+                <div style="text-align: center;">
+                    <hr>
+                    <div style="float:right;">
+                        <button id="success-ok" class="modal-button-primary">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </section>
 
 </body>
 
 
-  <script src='../lib/moment.min.js'></script>
-  <script src='../lib/jquery-latest.min.js'></script>
-  <script src='../fullcalendar.js'></script>
-  <script src="colorpicker/jquery.tinycolorpicker.js"></script>
-  <script src="script.js"></script>
-  <script src='audio.js'></script>
+<script src='../lib/moment.min.js'></script>
+<script src='../lib/jquery-latest.min.js'></script>
+<script src='../fullcalendar.js'></script>
+<script src="colorpicker/jquery.tinycolorpicker.js"></script>
+<script src="script.js"></script>
+<script src='audio.js'></script>
 </html>
 
