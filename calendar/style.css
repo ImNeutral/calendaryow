@@ -143,5 +143,22 @@ td {
     margin-right: 65%;
 }
 
+.disabled {
+    cursor: default !important;
+    opacity: 0.5;
+    background-color: #7f8c8d !important;
+}
+
+.disabled:hover {
+    background-color: #7f8c8d !important;
+}
+
+.fc-event-container{
+    background-color: whitesmoke;
+}
+
+.fc-popover {
+    box-shadow: 1px 1px 11px 3px #c7c7c7 !important;
+}
 
 

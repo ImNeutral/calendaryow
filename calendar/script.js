@@ -411,7 +411,7 @@ $(document).ready(function() {
 
 
     function getTodayEvents() {
-
+            disableAddButton();
             //var array = new Array();
             var array = getAllCalendarEvents();
             var date = getToday();
@@ -422,9 +422,7 @@ $(document).ready(function() {
 
             // console.log(getAllCalendarEvents());
             // console.log(array[119].title + " ===== " + array[119].start._i + "  =======  " + array[119].end._i);
-            console.log(array);
-            
-
+     
 
             for (var i = 0; i <= array.length-1; i++) {
                 var startDate = getFormattedDate(new Date(array[i].start._d));
@@ -449,10 +447,22 @@ $(document).ready(function() {
                                 );
                 editEvent(event_match[0]);
             });
+
+
+            $("#edited-title").keyup(function(){
+                disableEditButton();
+            });
+
+            $("#edited-title").keydown(function(){
+                disableEditButton();
+            });
+
+            $("#edited-title").change(function(){
+                disableEditButton();
+            });
     }
 
     getTodayEvents();
-
 
     function modalIn(element) {
         element.css('display', 'block');
@@ -461,6 +471,45 @@ $(document).ready(function() {
     function modalOut(element) {
         element.css('display', 'none')
     }
+
+    function isNotEmpty(value_str){
+        value_str = replace_whitespaces(value_str);
+        console.log(value_str.length);
+        return (value_str.length != 0);
+    }
+
+    function disableAddButton(){
+        if(isNotEmpty($("#title").val())){
+            $("#confirm-button").removeClass('disabled');
+            $("#confirm-button").attr('disabled', false);
+        }else{
+            $("#confirm-button").addClass('disabled');
+            $("#confirm-button").attr('disabled', true);
+        }
+    }
+
+    function disableEditButton(){
+        if(isNotEmpty($("#edited-title").val())){
+            $("#confirm-edit").removeClass('disabled');
+            $("#confirm-edit").attr('disabled', false);
+        }else{
+            $("#confirm-edit").addClass('disabled');
+            $("#confirm-edit").attr('disabled', true);
+        }
+    }
+
+    $("#title").keyup(function(){
+        disableAddButton();
+
+     });
+
+    $("#title").keydown(function(){
+        disableAddButton();
+    });
+
+    $("#title").change(function(){
+        disableAddButton();
+    });
 
 
 });
