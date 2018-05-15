@@ -17,6 +17,12 @@ $(document).ready(function() {
     var color           = $('#colorInput');
     var colorEdit       = $('#colorInputEdit');
 
+    var ccModal         = $('#cancelConfirmModal');
+    var ccOperation     = $('#cc-operation');
+    var ccTitle         = $('#cc-title');
+    var ccConfirm       = $('#cc-confirm');
+    var ccCancel        = $('#cc-cancel');
+
 
     colorPicker.tinycolorpicker();
     colorPicker2.tinycolorpicker();
@@ -98,11 +104,6 @@ $(document).ready(function() {
         events: getAllEvents()
     });
 
-
-    // span.onclick = function() {
-    //     modal.css("display", "none");
-    // };
-
     replace_whitespaces = function(value){
         return value.replace(/\s+/, "");
     };
@@ -173,265 +174,254 @@ $(document).ready(function() {
     }
 
     function getFormattedDate(date) {
-    date.setDate( date.getDate() + 1 );
-    return date.getFullYear() + "-" + ( ("0" + (date.getMonth() + 1)).slice(-2) ) + "-" + ( ("0" + (date.getDate())).slice(-2) );
-}
-
-function saveEvents() {
-    var events = $('#calendar').fullCalendar('clientEvents');
-    var newEvents = [];
-    for(var roll=0; roll<events.length; roll++) {
-        var dateStart = events[roll].start['_d'];
-        var dateEnd;
-        if( events[roll].end == null) {
-            dateEnd = dateStart;
-            dateEnd.setDate(dateEnd.getDate() + 1);
-        } else {
-            dateEnd = events[roll].end['_d'];
-        }
-
-         newEvents[roll] = {
-             "title": events[roll].title,
-             "start": getFormattedDate(dateStart),
-             "end"  : getFormattedDate(dateEnd),
-             "color": events[roll].color
-         };
-    }
-    localStorage.setItem("events",JSON.stringify(newEvents));
-}
-
-function getAllEvents() {
-    // localStorage.clear();
-    var storedEvents = JSON.parse(localStorage.getItem("events"));
-    if(storedEvents == null) {
-        setDefault();
-        storedEvents = JSON.parse(localStorage.getItem("events"));
+        date.setDate( date.getDate() + 1 );
+        return date.getFullYear() + "-" + ( ("0" + (date.getMonth() + 1)).slice(-2) ) + "-" + ( ("0" + (date.getDate())).slice(-2) );
     }
 
-    return storedEvents;
-}
-
-function setDefault() {
-    // localStorage.clear();
-
-    var d = new Date();
-    var y = d.getFullYear();
-    var events = defaultEvents(y-1);
-    for (var i=y; i<y+5; i++) {
-        events = events.concat(defaultEvents(i));
-    }
-    localStorage.setItem("events",JSON.stringify( events ));
-}
-
-function defaultEvents(year) {
-    return [
-        {
-            id: 1,
-            title: 'Eidul-Fitr',
-            start: year + '-06-24',
-            end:   year + '-06-25',
-            color: '#0391ce'
-        },
-        {
-            title: 'Ninoy Aquino Day', 
-            start: year + '-08-21',
-            end:   year + '-08-22',
-            color: '#0391ce'
-        },
-
-        {
-            title: 'National Heroes Day',
-            start: year + '-08-26',
-            end: year + '-08-27',
-            color: '#0391ce'
-        },
-        {
-            title: 'Id-Ul-Adha',
-            start: year + '-09-01',
-            end: year + '-09-02',
-            color: '#0391ce'
-        },
-        {
-            title: 'Amun Jadid',
-            start: year + '-09-21',
-            end: year + '-09-22',
-            color: '#0391ce'
-        },
-        {
-            title: 'All Saints Day',
-            start: year + '-11-01',
-            end: year + '-11-02',
-            color: '#0391ce'
-        },
-        {
-            title: 'Bonifacio Day',
-            start: year + '-11-30',
-            end: year + '-12-01',
-            color: '#0391ce'
-        },
-        {
-            title: 'Maulid un-Nabi',
-            start: year + '-11-30',
-            end: year + '-12-01',
-            color: '#0391ce'
-        },
-        {
-            title: 'Christmas Eve',
-            start: year + '-12-24',
-            end: year + '-12-25',
-            color: '#0391ce'
-        },
-        {
-            title: 'Christmas Day',
-            start: year + '-12-25',
-            end: year + '-12-26',
-            color: '#0391ce'
-        },
-        {
-            title: 'New Years Day',
-            start: year + '-01-01',
-            end: year + '-01-02',
-            color: '#0391ce'
-        },
-        {
-            title: 'Chinese Lunar New Years Day',
-            start: year + '-02-16',
-            end: year + '-02-17',
-            color: '#0391ce'
-        },
-        {
-            title: 'Maundy Thursday',
-            start: year + '-04-29',
-            end: year + '-04-30',
-            color: '#0391ce'
-        },
-        {
-            title: 'Good Friday',
-            start: year + '-04-30',
-            end: year + '-05-01',
-            color: '#0391ce'
-        },
-
-        {
-            title: 'The Day of Valor',
-            start: year + '-04-09',
-            end: year + '-04-10',
-            color: '#0391ce'
-        },
-        {
-            title: 'Lailatul Isra Wal Mi Raj',
-            start: year + '-04-12',
-            end: year + '-04-13',
-            color: '#0391ce'
-        },
-        {
-            title: 'Labor Day',
-            start: year + '-05-01',
-            end: year + '-05-02',
-            color: '#0391ce'
-        },
-        {
-            title: 'Independence Day',
-            start: year + '-06-12',
-            end: year + '-06-13',
-            color: '#0391ce'
-        },
-        {
-            title: 'Eidul-Fitr',
-            start: year + '-06-13',
-            end: year + '-06-14',
-            color: '#0391ce'
-        },
-    ];
-}
-
-
- function getToday(){
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-
-    var yyyy = today.getFullYear();
-    if(dd<10){
-        dd='0'+dd;
-      }
-    if(mm<10){
-      mm='0'+mm;
-    }
-    var today = yyyy + '-' + mm + '-' + dd;
-    //dd+'/'+mm+'/'+yyyy;
-
-    return today;
-}
-
-// modifed this part here
-
- function getToday(){
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-
-    var yyyy = today.getFullYear();
-    if(dd<10){
-        dd='0'+dd;
-      }
-    if(mm<10){
-      mm='0'+mm;
-    }
-    var today = yyyy + '-' + mm + '-' + dd;
-    //dd+'/'+mm+'/'+yyyy;
-
-    return today;
-}
-
-
-
-
-function getAllCalendarEvents()
-{
-    return calendar.fullCalendar('clientEvents') ;
-}
-
-
-function getTodayEvents() {
-
-        var array = new Array();
-        array = getAllCalendarEvents();
-
-        var date = getToday();
-        var events_today = new Array();
-        var events = JSON.parse(localStorage.getItem("events"));
-        var today_element = $("#today-event");
-        today_element.empty();
-        
-        for (var i = 0; i <= array.length-1; i++) {
-            if(date >= array[i].start._i&& date <= array[i].end._i)
-            {
-            
-                var element = "<div class='today-event fc-event'" +
-                "data-title='" + array[i].title + 
-                "' data-id='" +
-                array[i]._id +
-                "' style='background-color: " + events[i].color + ";'>"+ events[i].title +"</div>";
-                today_element.append(element);
+    function saveEvents() {
+        var events = $('#calendar').fullCalendar('clientEvents');
+        var newEvents = [];
+        for(var roll=0; roll<events.length; roll++) {
+            var dateStart = events[roll].start['_d'];
+            var dateEnd;
+            if( events[roll].end == null) {
+                dateEnd = dateStart;
+                dateEnd.setDate(dateEnd.getDate() + 1);
+            } else {
+                dateEnd = events[roll].end['_d'];
             }
+
+             newEvents[roll] = {
+                 "title": events[roll].title,
+                 "start": getFormattedDate(dateStart),
+                 "end"  : getFormattedDate(dateEnd),
+                 "color": events[roll].color
+             };
+        }
+        localStorage.setItem("events",JSON.stringify(newEvents));
+    }
+
+    function getAllEvents() {
+        // localStorage.clear();
+        var storedEvents = JSON.parse(localStorage.getItem("events"));
+        if(storedEvents == null) {
+            setDefault();
+            storedEvents = JSON.parse(localStorage.getItem("events"));
         }
 
-        $(".today-event").on('dblclick', function(event){
-            console.log("what the fuck");
-            var element = $(event.currentTarget);
-            var event_match = $("#calendar").fullCalendar(
-                                'clientEvents', 
-                                element.data('id')
-                            );
-            editEvent(event_match[0]);
-        });
-}
+        return storedEvents;
+    }
+
+    function setDefault() {
+        // localStorage.clear();
+
+        var d = new Date();
+        var y = d.getFullYear();
+        var events = defaultEvents(y-1);
+        for (var i=y; i<y+5; i++) {
+            events = events.concat(defaultEvents(i));
+        }
+        localStorage.setItem("events",JSON.stringify( events ));
+    }
+
+    function defaultEvents(year) {
+        return [
+            {
+                id: 1,
+                title: 'Eidul-Fitr',
+                start: year + '-06-24',
+                end:   year + '-06-25',
+                color: '#0391ce'
+            },
+            {
+                title: 'Ninoy Aquino Day',
+                start: year + '-08-21',
+                end:   year + '-08-22',
+                color: '#0391ce'
+            },
+
+            {
+                title: 'National Heroes Day',
+                start: year + '-08-26',
+                end: year + '-08-27',
+                color: '#0391ce'
+            },
+            {
+                title: 'Id-Ul-Adha',
+                start: year + '-09-01',
+                end: year + '-09-02',
+                color: '#0391ce'
+            },
+            {
+                title: 'Amun Jadid',
+                start: year + '-09-21',
+                end: year + '-09-22',
+                color: '#0391ce'
+            },
+            {
+                title: 'All Saints Day',
+                start: year + '-11-01',
+                end: year + '-11-02',
+                color: '#0391ce'
+            },
+            {
+                title: 'Bonifacio Day',
+                start: year + '-11-30',
+                end: year + '-12-01',
+                color: '#0391ce'
+            },
+            {
+                title: 'Maulid un-Nabi',
+                start: year + '-11-30',
+                end: year + '-12-01',
+                color: '#0391ce'
+            },
+            {
+                title: 'Christmas Eve',
+                start: year + '-12-24',
+                end: year + '-12-25',
+                color: '#0391ce'
+            },
+            {
+                title: 'Christmas Day',
+                start: year + '-12-25',
+                end: year + '-12-26',
+                color: '#0391ce'
+            },
+            {
+                title: 'New Years Day',
+                start: year + '-01-01',
+                end: year + '-01-02',
+                color: '#0391ce'
+            },
+            {
+                title: 'Chinese Lunar New Years Day',
+                start: year + '-02-16',
+                end: year + '-02-17',
+                color: '#0391ce'
+            },
+            {
+                title: 'Maundy Thursday',
+                start: year + '-04-29',
+                end: year + '-04-30',
+                color: '#0391ce'
+            },
+            {
+                title: 'Good Friday',
+                start: year + '-04-30',
+                end: year + '-05-01',
+                color: '#0391ce'
+            },
+
+            {
+                title: 'The Day of Valor',
+                start: year + '-04-09',
+                end: year + '-04-10',
+                color: '#0391ce'
+            },
+            {
+                title: 'Lailatul Isra Wal Mi Raj',
+                start: year + '-04-12',
+                end: year + '-04-13',
+                color: '#0391ce'
+            },
+            {
+                title: 'Labor Day',
+                start: year + '-05-01',
+                end: year + '-05-02',
+                color: '#0391ce'
+            },
+            {
+                title: 'Independence Day',
+                start: year + '-06-12',
+                end: year + '-06-13',
+                color: '#0391ce'
+            },
+            {
+                title: 'Eidul-Fitr',
+                start: year + '-06-13',
+                end: year + '-06-14',
+                color: '#0391ce'
+            },
+        ];
+    }
+
+    // modifed this part here
+
+     function getToday(){
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+
+        var yyyy = today.getFullYear();
+        if(dd<10){
+            dd='0'+dd;
+          }
+        if(mm<10){
+          mm='0'+mm;
+        }
+        var today = yyyy + '-' + mm + '-' + dd;
+        //dd+'/'+mm+'/'+yyyy;
+
+        return today;
+    }
 
 
 
-getTodayEvents();
 
+    function getAllCalendarEvents()
+    {
+        return calendar.fullCalendar('clientEvents') ;
+    }
+
+
+    function getTodayEvents() {
+
+            //var array = new Array();
+            var array = getAllCalendarEvents();
+            var date = getToday();
+            var events_today = new Array();
+            var events = JSON.parse(localStorage.getItem("events"));
+            var today_element = $("#today-event");
+            today_element.empty();
+
+            // console.log(getAllCalendarEvents());
+            // console.log(array[119].title + " ===== " + array[119].start._i + "  =======  " + array[119].end._i);
+
+            for (var i = 0; i <= array.length-1; i++) {
+                if(date >= array[i].start._i && date <= array[i].end._i)
+                {
+                    var element = "<div class='today-event fc-event'" +
+                    "data-title='" + array[i].title +
+                    "' data-id='" +
+                    array[i]._id +
+                    "' style='background-color: " + events[i].color + ";'>"+ events[i].title +"</div>";
+                    today_element.append(element);
+                }
+            }
+
+            $(".today-event").on('dblclick', function(event){
+                var element = $(event.currentTarget);
+                var event_match = $("#calendar").fullCalendar(
+                                    'clientEvents',
+                                    element.data('id')
+                                );
+                editEvent(event_match[0]);
+            });
+    }
+
+    getTodayEvents();
+
+
+    // ccModalIn();
+    function ccModalIn() {
+        ccModal.css("display", "block");
+        modal.css("display", "block");
+    }
+
+    function ccModalOut() {
+        ccModal.css("display", "none");
+    }
 
 
 });
