@@ -382,14 +382,14 @@ $(document).ready(function() {
         ];
     }
 
-    // modifed this part here
-
+ 
      function getToday(){
+        
         var today = new Date();
         var dd = today.getDate();
-        var mm = today.getMonth()+1; //January is 0!
-
+        var mm = today.getMonth()+1; 
         var yyyy = today.getFullYear();
+
         if(dd<10){
             dd='0'+dd;
           }
@@ -397,7 +397,6 @@ $(document).ready(function() {
           mm='0'+mm;
         }
         var today = yyyy + '-' + mm + '-' + dd;
-        //dd+'/'+mm+'/'+yyyy;
 
         return today;
     }
@@ -423,10 +422,16 @@ $(document).ready(function() {
 
             // console.log(getAllCalendarEvents());
             // console.log(array[119].title + " ===== " + array[119].start._i + "  =======  " + array[119].end._i);
+            console.log(array);
+            
+
 
             for (var i = 0; i <= array.length-1; i++) {
-                if(date >= array[i].start._i && date <= array[i].end._i)
+                var startDate = getFormattedDate(new Date(array[i].start._d));
+                var endDate = getFormattedDate(new Date(array[i].end._d));
+                if(date == startDate && date <= endDate)
                 {
+
                     var element = "<div class='today-event fc-event'" +
                     "data-title='" + array[i].title +
                     "' data-id='" +
@@ -436,7 +441,7 @@ $(document).ready(function() {
                 }
             }
 
-            $(".today-event").on('dblclick', function(event){
+            $(".today-event").on('click', function(event){
                 var element = $(event.currentTarget);
                 var event_match = $("#calendar").fullCalendar(
                                     'clientEvents',
