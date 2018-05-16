@@ -66,13 +66,15 @@ $(document).ready(function() {
                             color: color.val()
                         };
                         calendar.fullCalendar('renderEvent', eventData, true); // stick? = true
-
                     }
                     calendar.fullCalendar('unselect');
                     modalOut(modal);
                     saveEvents();
                     getTodayEvents();
                     confirm.off();
+
+                    successOperation.text("Successfully added new event!");
+                    modalIn(successModal);
                 } else{
                     successOperation.text("Title must not be empty!");
                     modalIn(successModal);

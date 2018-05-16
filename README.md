@@ -21,4 +21,4 @@ Yow! A shitty calendar for all your events
 
 # Suggestion
 
-1. Add modal when confirming that event has been added
+1. Add modal when confirming that event has been added -> done
