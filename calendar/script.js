@@ -412,7 +412,6 @@ $(document).ready(function() {
 
     function getTodayEvents() {
             disableAddButton();
-            //var array = new Array();
             var array = getAllCalendarEvents();
             var date = getToday();
             var events_today = new Array();
@@ -422,14 +421,29 @@ $(document).ready(function() {
 
             // console.log(getAllCalendarEvents());
             // console.log(array[119].title + " ===== " + array[119].start._i + "  =======  " + array[119].end._i);
-     
+        
 
             for (var i = 0; i <= array.length-1; i++) {
+
+
+
                 var startDate = getFormattedDate(new Date(array[i].start._d));
                 var endDate = getFormattedDate(new Date(array[i].end._d));
-                if(date == startDate && date <= endDate)
-                {
 
+                var endDateSubtracted = new Date(endDate);
+                var endYear = endDateSubtracted.getFullYear();
+                var endMonth = ((endDateSubtracted.getMonth()+1) < 10) ? "0" + (endDateSubtracted.getMonth()+1) : endDateSubtracted.getMonth() +1;
+                var endDay = ((endDateSubtracted.getDate()+1) - 1) == 0 ? endDateSubtracted.getDate() : (endDateSubtracted.getDate() + 1) - 1 ;
+    
+
+
+                endDay = (endDay < 10) ? "0" + endDay : endDay;
+                endMonth = (endMonth == "00") ? "01" : endMonth; 
+                endDateSubtracted = endYear + "-" + endMonth + "-" + endDay;
+    
+
+                if(date >= startDate && endDateSubtracted >= date)    
+                {
                     var element = "<div class='today-event fc-event'" +
                     "data-title='" + array[i].title +
                     "' data-id='" +
