@@ -429,9 +429,8 @@ $(document).ready(function() {
             for (var i = 0; i <= array.length-1; i++) {
                 var startDate = getFormattedDate(new Date(array[i].start._d));
                 var endDate = getFormattedDate(new Date(array[i].end._d));
-                if(date == startDate && date <= endDate)
+                if(startDate <= date && date < endDate)
                 {
-
                     var element = "<div class='today-event fc-event'" +
                     "data-title='" + array[i].title +
                     "' data-id='" +

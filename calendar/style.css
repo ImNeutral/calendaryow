@@ -162,3 +162,10 @@ td {
 }
 
 
+.today-event {
+    border: none;
+}
+
+.fc-event {
+    border: 1px solid transparent;
+}
