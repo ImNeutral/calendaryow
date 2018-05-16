@@ -169,3 +169,8 @@ td {
 .fc-event {
     border: 1px solid transparent;
 }
+
+.control-icon {
+    width: 13px;
+    height: 13px;
+}
