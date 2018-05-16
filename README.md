@@ -14,11 +14,11 @@ Yow! A shitty calendar for all your events
 
 1. Package => Electron App <br>
 2. Tutorial <br>
-3. Cleaning the UI for excess or mix colors (if there is) <br>
+3. Cleaning the UI for excess or mix colors (if there is) <br> -> dont understand. :D
 4. Add more audio <br>
-5. Add icons
+5. Add icons -> done
 
 
 # Suggestion
 
-1. Add modal when confirming that event has been added
+1. Add modal when confirming that event has been added -> done

@@ -162,3 +162,20 @@ td {
 }
 
 
+.today-event {
+    border: none;
+}
+
+.fc-event {
+    border: 1px solid transparent;
+}
+
+.control-icon {
+    width: 13px;
+    height: 13px;
+}
+
+.close-icon {
+    width: 20px;
+    height: 20px;
+}
