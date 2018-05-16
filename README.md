@@ -14,9 +14,8 @@ Yow! A shitty calendar for all your events
 
 1. Package => Electron App <br>
 2. Tutorial <br>
-3. Cleaning the UI for excess or mix colors (if there is) <br> -> dont understand. :D
-4. Add more audio <br>
-5. Add icons -> done
+3. Add more audio <br>
+4. Add icons -> done <br>
 
 
 # Suggestion
