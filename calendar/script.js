@@ -72,7 +72,7 @@ $(document).ready(function() {
                     saveEvents();
                     getTodayEvents();
                     confirm.off();
-
+                    saved_sound();
                     successOperation.text("Successfully added new event!");
                     modalIn(successModal);
                 } else{
@@ -92,6 +92,7 @@ $(document).ready(function() {
 
         },
         eventDrop: function(){
+            saved_sound();
             saveEvents();
             getTodayEvents();
         },
@@ -154,6 +155,7 @@ $(document).ready(function() {
                 event.title = newTitle;
                 event.color = colorEdit.val();
                 calendar.fullCalendar('updateEvent', event);
+                saved_sound();
                 saveEvents();
 
                 successOperation.text("Successfully Edited Event!");
@@ -177,7 +179,7 @@ $(document).ready(function() {
                 ccConfirm.off();
                 modalOut(ccModal);
                 modalOut(editEventModal);
-
+                saved_sound();
                 successOperation.text("Successfully Deleted Event!");
                 modalIn(successModal);
             });
@@ -526,6 +528,7 @@ $(document).ready(function() {
     $("#title").change(function(){
         disableAddButton();
     });
+
 
 
 });
