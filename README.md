@@ -3,21 +3,11 @@
 Yow! A shitty calendar for all your events
 
 
-# Changes Made 
-
-1. Today Events => updates when dragging events on the calendar <br>
-2. Modal => Disable Button when textfield is empty <br>
-3. UI => popover ui added box shadow when showing multiple events, with "more"
-
-
 # TODO
 
-1. Package => Electron App <br>
-2. Tutorial <br>
-3. Add more audio <br>
-4. Add icons -> done <br>
+1. Change background to "Environmental Shits"
+2. Add dragable panel of events sa right side, (Panel na mag contain ug dragable events padulong sa calendar)
+3. Set continous date, like birthday available gihapon till next years
 
+# Void
 
-# Suggestion
-
-1. Add modal when confirming that event has been added -> done
