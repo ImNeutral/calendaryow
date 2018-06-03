@@ -242,13 +242,8 @@ $(document).ready(function() {
         localStorage.setItem("events",JSON.stringify(newEvents));
     }
 
-    function hello() {
-
-        //hello
-    }
-
     function getAllEvents() {
-        localStorage.clear();
+        // localStorage.clear();
         var storedEvents = JSON.parse(localStorage.getItem("events"));
         if(storedEvents == null) {
             setDefault();
