@@ -8,3 +8,7 @@ function world(){
 function hi() {
     aw
 }
+
+function hello() {
+    hello
+}
