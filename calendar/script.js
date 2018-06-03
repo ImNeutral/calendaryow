@@ -37,8 +37,6 @@ $(document).ready(function() {
     picker.setColor("#0391ce");
     picker2.setColor("#0391ce");
 
-
-
     calendar.fullCalendar({
         header: {
             left: 'prev',
@@ -107,6 +105,7 @@ $(document).ready(function() {
         },
         droppable: true,
         drop: function () {
+          saved_sound();
           saveEvents();
           getTodayEvents();
         },
@@ -264,7 +263,7 @@ $(document).ready(function() {
         var d = new Date();
         var y = d.getFullYear();
         var events = defaultEvents(y-1);
-        for ( var i = y; i < y+5 ; i++ ) {
+        for ( var i = y; i < y+10 ; i++ ) {
             events = events.concat(defaultEvents(i));
         }
         localStorage.setItem("events",JSON.stringify( events ));
@@ -277,117 +276,117 @@ $(document).ready(function() {
                 title: 'Eidul-Fitr',
                 start: year + '-06-24',
                 end:   year + '-06-25',
-                color: '#0391ce'
+                color: '#fe2712'
             },
             {
                 title: 'Ninoy Aquino Day',
                 start: year + '-08-21',
                 end:   year + '-08-22',
-                color: '#0391ce'
+                color: '#fe2712'
             },
 
             {
                 title: 'National Heroes Day',
                 start: year + '-08-26',
                 end: year + '-08-27',
-                color: '#0391ce'
+                color: '#fe2712'
             },
             {
                 title: 'Id-Ul-Adha',
                 start: year + '-09-01',
                 end: year + '-09-02',
-                color: '#0391ce'
+                color: '#fe2712'
             },
             {
                 title: 'Amun Jadid',
                 start: year + '-09-21',
                 end: year + '-09-22',
-                color: '#0391ce'
+                color: '#fe2712'
             },
             {
                 title: 'All Saints Day',
                 start: year + '-11-01',
                 end: year + '-11-02',
-                color: '#0391ce'
+                color: '#fe2712'
             },
             {
                 title: 'Bonifacio Day',
                 start: year + '-11-30',
                 end: year + '-12-01',
-                color: '#0391ce'
+                color: '#fe2712'
             },
             {
                 title: 'Maulid un-Nabi',
                 start: year + '-11-30',
                 end: year + '-12-01',
-                color: '#0391ce'
+                color: '#fe2712'
             },
             {
                 title: 'Christmas Eve',
                 start: year + '-12-24',
                 end: year + '-12-25',
-                color: '#0391ce'
+                color: '#fe2712'
             },
             {
                 title: 'Christmas Day',
                 start: year + '-12-25',
                 end: year + '-12-26',
-                color: '#0391ce'
+                color: '#fe2712'
             },
             {
                 title: 'New Years Day',
                 start: year + '-01-01',
                 end: year + '-01-02',
-                color: '#0391ce'
+                color: '#fe2712'
             },
             {
                 title: 'Chinese Lunar New Years Day',
                 start: year + '-02-16',
                 end: year + '-02-17',
-                color: '#0391ce'
+                color: '#fe2712'
             },
             {
                 title: 'Maundy Thursday',
                 start: year + '-04-29',
                 end: year + '-04-30',
-                color: '#0391ce'
+                color: '#fe2712'
             },
             {
                 title: 'Good Friday',
                 start: year + '-04-30',
                 end: year + '-05-01',
-                color: '#0391ce'
+                color: '#fe2712'
             },
 
             {
                 title: 'The Day of Valor',
                 start: year + '-04-09',
                 end: year + '-04-10',
-                color: '#0391ce'
+                color: '#fe2712'
             },
             {
                 title: 'Lailatul Isra Wal Mi Raj',
                 start: year + '-04-12',
                 end: year + '-04-13',
-                color: '#0391ce'
+                color: '#fe2712'
             },
             {
                 title: 'Labor Day',
                 start: year + '-05-01',
                 end: year + '-05-02',
-                color: '#0391ce'
+                color: '#fe2712'
             },
             {
                 title: 'Independence Day',
                 start: year + '-06-12',
                 end: year + '-06-13',
-                color: '#0391ce'
+                color: '#fe2712'
             },
             {
                 title: 'Eidul-Fitr',
                 start: year + '-06-13',
                 end: year + '-06-14',
-                color: '#0391ce'
+                color: '#fe2712'
             },
         ];
     }
@@ -478,14 +477,6 @@ $(document).ready(function() {
 
     getTodayEvents();
 
-    function modalIn(element) {
-        element.css('display', 'block');
-    }
-
-    function modalOut(element) {
-        element.css('display', 'none')
-    }
-
     function isNotEmpty(value_str){
         value_str = replace_whitespaces(value_str);
 
@@ -527,7 +518,13 @@ $(document).ready(function() {
 
 });
 
+function modalIn(element) {
+    element.css('display', 'block');
+}
 
+function modalOut(element) {
+    element.css('display', 'none')
+}
 
 
 

@@ -25,19 +25,15 @@
 
     <div id="draggable-panel">
         <div class="menu">
-            <h3 class="leftist-title">Pre-defined Events</h3>
+            <h3 class="leftist-title">Draggable Events</h3>
             <hr>
 
             <div id='external-events'>
-                <div class='draggable-event' id='2' style="background-color: #0391ce;">My Event 1</div>
-                <div class='draggable-event' id="1">My Event 2</div>
-                <div class='draggable-event'>My Event 3</div>
-                <div class='draggable-event'>My Event 4</div>
-                <div class='draggable-event'>My Event 5</div>
             </div>
 
             <button id="button-add-draggable" class="modal-button-primary">
                 <img src="icons/add.png" alt="" class="control-icon"> Add</button>
+
         </div>
 
     </div>
@@ -178,6 +174,162 @@
 
 </section>
 
+<section class="draggable-event-modals-section">
+    <div id="draggable-add" class="modal">
+        <div class="modal-content">
+            <span class="close">
+                            <img src="icons/cancel.png" alt="" class="close-icon"></span>
+            <h4 class="text-center modal-title">Add Draggable Event</h4>
+
+            <div class="modal-inside">
+                <div class="modal-inside-div">
+                    <input type="text" name="" placeholder="Title" id="draggable-title" />
+
+                    <span>Background Color:</span>
+                    <div id="colorPicker3" class="colorPicker">
+                        <a class="color"><div class="colorInner"></div></a>
+                        <div class="track">
+                        </div>
+                        <ul class="dropdown"><li></li></ul>
+                        <input type="hidden" class="colorInput" id="draggable-colorInput"/>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <div style="float:right;">
+                        <button id="draggable-confirm" class="modal-button-primary disabled">
+                            <img src="icons/add.png" alt="" class="control-icon">
+                            Add</button>
+                        <button class="modal-button-danger ok">
+                            <img src="icons/cancel.png" alt="" class="control-icon">
+                            Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="draggable-success" class="modal">
+        <div class="modal-content" style="margin-top: 2%; height: 120px;">
+            <span class="close">
+                            <img src="icons/cancel.png" alt="" class="close-icon"></span>
+            <h4 class="text-center modal-title">New Draggable Event Added!</h4>
+
+            <div class="modal-inside">
+                <div style="text-align: center;">
+                    <hr>
+                    <div style="float:right;">
+                        <button class="modal-button-primary ok">
+                            <img src="icons/ok.png" alt="" class="control-icon">
+                            Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="draggable-edit-success" class="modal">
+        <div class="modal-content" style="margin-top: 2%; height: 120px;">
+            <span class="close">
+                            <img src="icons/cancel.png" alt="" class="close-icon"></span>
+            <h4 class="text-center modal-title">Draggable Event Successfully Updated!</h4>
+
+            <div class="modal-inside">
+                <div style="text-align: center;">
+                    <hr>
+                    <div style="float:right;">
+                        <button class="modal-button-primary ok">
+                            <img src="icons/ok.png" alt="" class="control-icon">
+                            Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="draggable-delete-success" class="modal">
+        <div class="modal-content" style="margin-top: 2%; height: 120px;">
+            <span class="close">
+                            <img src="icons/cancel.png" alt="" class="close-icon"></span>
+            <h4 class="text-center modal-title">Draggable Event Successfully Deleted!</h4>
+
+            <div class="modal-inside">
+                <div style="text-align: center;">
+                    <hr>
+                    <div style="float:right;">
+                        <button class="modal-button-primary ok">
+                            <img src="icons/ok.png" alt="" class="control-icon">
+                            Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="draggable-edit" class="modal">
+        <div class="modal-content">
+            <span class="close">
+                            <img src="icons/cancel.png" alt="" class="close-icon"></span>
+            <h4 class="text-center modal-title">Edit Event</h4>
+
+            <div class="modal-inside">
+                <div class="modal-inside-div">
+                    <input type="text" name="" placeholder="Title" id="draggable-edited-title" />
+
+                    <span>Background Color:</span>
+                    <div id="colorPicker4" class="colorPicker">
+                        <a class="color"><div class="colorInner"></div></a>
+                        <div class="track"></div>
+                        <ul class="dropdown"><li></li></ul>
+                        <input type="hidden" class="colorInput" id="draggable-colorInputEdit"/>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="float:right;">
+                        <button id="draggable-confirm-edit" class="modal-button-primary">
+                            <img src="icons/edit.png" alt="" class="control-icon">
+                            Confirm Edit</button>
+                        <button id="draggable-delete-event" class="modal-button-primary button-warning">
+                            <img src="icons/delete.png" alt="" class="control-icon">
+                            Delete Event</button>
+                        <button class="modal-button-danger ok">
+                            <img src="icons/cancel.png" alt="" class="control-icon">
+                            Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="draggable-cancelConfirmModal" class="modal">
+        <div class="modal-content" style="margin-top: 2%;">
+            <span id="draggable-close" style="float: right; cursor: pointer;">
+                            <img src="icons/cancel.png" alt="" class="close-icon"></span>
+            <h4 class="text-center modal-title">Delete this Draggable Event?</h4>
+
+            <div class="modal-inside">
+                <div class="modal-inside-div" style="height: 35%;">
+                    <h3 type="text" name="" id="draggable-delete-title" style="font-weight: 100;">Test Title</h3>
+                </div>
+                <div style="text-align: center;">
+                    <hr>
+                    <div style="float:right;">
+                        <button id="draggable-cc-confirm" class="modal-button-primary">
+                            <img src="icons/delete.png" alt="" class="control-icon">
+                            Delete</button>
+                        <button id="draggable-cc-cancel" class="modal-button-danger">
+                            <img src="icons/cancel.png" alt="" class="control-icon">
+                            Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
 </body>
 
 
@@ -187,32 +339,8 @@
 <script src='../fullcalendar.js'></script>
 <script src="colorpicker/jquery.tinycolorpicker.js"></script>
 <script src="script.js"></script>
+<script src="draggable.js"></script>
 <script src='audio.js'></script>
-
-<script>
-    $(document).ready(function () {
-
-        $('#external-events .draggable-event').each(function() {
-
-            // store data so the calendar knows to render an event upon drop
-            $(this).data('event', {
-                title: $.trim($(this).text()), // use the element's text as the event title
-                stick: true, // maintain when user navigates (see docs on the renderEvent method)
-                color: $(this).css('background-color')
-            });
-
-
-            // make the event draggable using jQuery UI
-            $(this).draggable({
-                zIndex: 999,
-                revert: true,      // will cause the event to go back to its
-                revertDuration: 0  //  original position after the drag
-            });
-
-        });
-
-    });
-</script>
 
 </html>
 

@@ -123,3 +123,11 @@ textarea:focus, input:focus{
     cursor: pointer;
 }
 
+#delete-draggable-event:hover {
+    cursor: none;
+    background-color: #e74c3c !important;
+}
+
+#delete-draggable-event::backdrop {
+    background-color: #fff !important;
+}
