@@ -94,7 +94,7 @@ $(document).ready(function() {
         eventDrop: function(){
             saved_sound();
             saveEvents();
-            getTodayEvents();
+            //getTodayEvents();
         },
         eventResize: function(){
             saveEvents();
@@ -236,7 +236,8 @@ $(document).ready(function() {
                  "start": getFormattedDate(dateStart),
                  "end"  : getFormattedDate(dateEnd),
                  "color": events[roll].color
-             };
+            };
+            console.log( (dateStart), " ", (dateEnd), " ", events[roll].title);
         }
         localStorage.setItem("events",JSON.stringify(newEvents));
     }
@@ -405,79 +406,69 @@ $(document).ready(function() {
         return today;
     }
 
-
-
-
-    function getAllCalendarEvents()
-    {
+    function getAllCalendarEvents() {
         return calendar.fullCalendar('clientEvents') ;
     }
 
-
     function getTodayEvents() {
-            disableAddButton();
-            var array = getAllCalendarEvents();
-            var date = getToday();
-            var events_today = new Array();
-            var events = JSON.parse(localStorage.getItem("events"));
-            var today_element = $("#today-event");
-            today_element.empty();
 
-            // console.log(getAllCalendarEvents());
-            // console.log(array[119].title + " ===== " + array[119].start._i + "  =======  " + array[119].end._i);
-        
+        disableAddButton();
+        var array = getAllCalendarEvents();
+        var date = getToday();
+        var events_today = new Array();
+        var events = JSON.parse(localStorage.getItem("events"));
+        var today_element = $("#today-event");
+        today_element.empty();
 
-            for (var i = 0; i <= array.length-1; i++) {
+        // console.log(getAllCalendarEvents());
+        // console.log(array[119].title + " ===== " + array[119].start._i + "  =======  " + array[119].end._i);
 
+        for (var i = 0; i <= array.length-1; i++) {
 
+            var startDate = getFormattedDate(new Date(array[i].start._d));
+            var endDate = getFormattedDate(new Date(array[i].end._d));
 
-                var startDate = getFormattedDate(new Date(array[i].start._d));
-                var endDate = getFormattedDate(new Date(array[i].end._d));
+            var endDateSubtracted = new Date(endDate);
+            var endYear = endDateSubtracted.getFullYear();
+            var endMonth = ((endDateSubtracted.getMonth()+1) < 10) ? "0" + (endDateSubtracted.getMonth()+1) : endDateSubtracted.getMonth() +1;
+            var endDay = ((endDateSubtracted.getDate()+1) - 1) == 0 ? endDateSubtracted.getDate() : (endDateSubtracted.getDate() + 1) - 1 ;
 
-                var endDateSubtracted = new Date(endDate);
-                var endYear = endDateSubtracted.getFullYear();
-                var endMonth = ((endDateSubtracted.getMonth()+1) < 10) ? "0" + (endDateSubtracted.getMonth()+1) : endDateSubtracted.getMonth() +1;
-                var endDay = ((endDateSubtracted.getDate()+1) - 1) == 0 ? endDateSubtracted.getDate() : (endDateSubtracted.getDate() + 1) - 1 ;
-    
+            endDay = (endDay < 10) ? "0" + endDay : endDay;
+            endMonth = (endMonth == "00") ? "01" : endMonth;
+            endDateSubtracted = endYear + "-" + endMonth + "-" + endDay;
 
-
-                endDay = (endDay < 10) ? "0" + endDay : endDay;
-                endMonth = (endMonth == "00") ? "01" : endMonth; 
-                endDateSubtracted = endYear + "-" + endMonth + "-" + endDay;
-    
-
-                if(date >= startDate && endDateSubtracted >= date)    
-                {
-                    var element = "<div class='today-event fc-event'" +
-                    "data-title='" + array[i].title +
-                    "' data-id='" +
-                    array[i]._id +
-                    "' style='background-color: " + events[i].color + ";'>"+ events[i].title +"</div>";
-                    today_element.append(element);
-                }
+            if(date >= startDate && endDateSubtracted > date)
+            {
+                var element = "<div class='today-event fc-event'" +
+                "data-title='" + array[i].title +
+                "' data-id='" +
+                array[i]._id +
+                "' style='background-color: " + events[i].color + ";'>"+ events[i].title +"</div>";
+                today_element.append(element);
             }
+        }
 
-            $(".today-event").on('click', function(event){
-                var element = $(event.currentTarget);
-                var event_match = $("#calendar").fullCalendar(
-                                    'clientEvents',
-                                    element.data('id')
-                                );
-                editEvent(event_match[0]);
-            });
+        $(".today-event").on('click', function(event){
+            var element = $(event.currentTarget);
+            var event_match = $("#calendar").fullCalendar(
+                                'clientEvents',
+                                element.data('id')
+                            );
+            editEvent(event_match[0]);
+        });
 
 
-            $("#edited-title").keyup(function(){
-                disableEditButton();
-            });
+        $("#edited-title").keyup(function(){
+            disableEditButton();
+        });
 
-            $("#edited-title").keydown(function(){
-                disableEditButton();
-            });
+        $("#edited-title").keydown(function(){
+            disableEditButton();
+        });
 
-            $("#edited-title").change(function(){
-                disableEditButton();
-            });
+        $("#edited-title").change(function(){
+            disableEditButton();
+        });
     }
 
     getTodayEvents();
@@ -492,7 +483,7 @@ $(document).ready(function() {
 
     function isNotEmpty(value_str){
         value_str = replace_whitespaces(value_str);
-        console.log(value_str.length);
+
         return (value_str.length != 0);
     }
 
