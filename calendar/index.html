@@ -13,7 +13,7 @@
 
 <div style="width:100%;height:100%;margin:0 auto;overflow: auto;margin:0 auto;">
     <div id="leftist">
-        <div id="menu-left">
+        <div class="menu">
             <h3 class="leftist-title">Today's Event</h3>
             <hr>
             <div id="today-event"></div>
@@ -21,6 +21,25 @@
     </div>
     <div id="rightist">
         <div id='calendar'></div>
+    </div>
+
+    <div id="draggable-panel">
+        <div class="menu">
+            <h3 class="leftist-title">Pre-defined Events</h3>
+            <hr>
+
+            <div id='external-events'>
+                <div class='draggable-event' id='2' style="background-color: #0391ce;">My Event 1</div>
+                <div class='draggable-event' id="1">My Event 2</div>
+                <div class='draggable-event'>My Event 3</div>
+                <div class='draggable-event'>My Event 4</div>
+                <div class='draggable-event'>My Event 5</div>
+            </div>
+
+            <button id="button-add-draggable" class="modal-button-primary">
+                <img src="icons/add.png" alt="" class="control-icon"> Add</button>
+        </div>
+
     </div>
 </div>
 
@@ -164,9 +183,36 @@
 
 <script src='../lib/moment.min.js'></script>
 <script src='../lib/jquery-latest.min.js'></script>
+<script src='../lib/jquery-ui.min.js'></script>
 <script src='../fullcalendar.js'></script>
 <script src="colorpicker/jquery.tinycolorpicker.js"></script>
 <script src="script.js"></script>
 <script src='audio.js'></script>
+
+<script>
+    $(document).ready(function () {
+
+        $('#external-events .draggable-event').each(function() {
+
+            // store data so the calendar knows to render an event upon drop
+            $(this).data('event', {
+                title: $.trim($(this).text()), // use the element's text as the event title
+                stick: true, // maintain when user navigates (see docs on the renderEvent method)
+                color: $(this).css('background-color')
+            });
+
+
+            // make the event draggable using jQuery UI
+            $(this).draggable({
+                zIndex: 999,
+                revert: true,      // will cause the event to go back to its
+                revertDuration: 0  //  original position after the drag
+            });
+
+        });
+
+    });
+</script>
+
 </html>
 

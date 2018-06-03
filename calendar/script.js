@@ -94,7 +94,7 @@ $(document).ready(function() {
         eventDrop: function(){
             saved_sound();
             saveEvents();
-            //getTodayEvents();
+            getTodayEvents();
         },
         eventResize: function(){
             saveEvents();
@@ -105,6 +105,12 @@ $(document).ready(function() {
                 editEvent(event);
             });
         },
+        droppable: true,
+        drop: function () {
+          saveEvents();
+          getTodayEvents();
+        },
+        forceEventDuration: true,
         fixedWeekCount : false,
         editable: true,
         eventLimit: true,
@@ -214,7 +220,7 @@ $(document).ready(function() {
     }
 
     function getFormattedDate(date) {
-        date.setDate( date.getDate() + 1 );
+        //date.setDate( date.getDate() + 1 );
         return date.getFullYear() + "-" + ( ("0" + (date.getMonth() + 1)).slice(-2) ) + "-" + ( ("0" + (date.getDate())).slice(-2) );
     }
 
@@ -224,8 +230,8 @@ $(document).ready(function() {
         for(var roll=0; roll<events.length; roll++) {
             var dateStart = events[roll].start['_d'];
             var dateEnd;
-            if( events[roll].end == null) {
-                dateEnd = dateStart;
+            if( !events[roll].end ) {
+                dateEnd = new Date( dateStart.getTime() );
                 dateEnd.setDate(dateEnd.getDate() + 1);
             } else {
                 dateEnd = events[roll].end['_d'];
@@ -237,13 +243,13 @@ $(document).ready(function() {
                  "end"  : getFormattedDate(dateEnd),
                  "color": events[roll].color
             };
-            console.log( (dateStart), " ", (dateEnd), " ", events[roll].title);
+            //console.log( (dateStart), " ", (dateEnd), " ", events[roll].title);
         }
         localStorage.setItem("events",JSON.stringify(newEvents));
     }
 
     function getAllEvents() {
-        // localStorage.clear();
+        //localStorage.clear();
         var storedEvents = JSON.parse(localStorage.getItem("events"));
         if(storedEvents == null) {
             setDefault();
@@ -254,12 +260,11 @@ $(document).ready(function() {
     }
 
     function setDefault() {
-        // localStorage.clear();
 
         var d = new Date();
         var y = d.getFullYear();
         var events = defaultEvents(y-1);
-        for (var i=y; i<y+5; i++) {
+        for ( var i = y; i < y+5 ; i++ ) {
             events = events.concat(defaultEvents(i));
         }
         localStorage.setItem("events",JSON.stringify( events ));
@@ -387,7 +392,6 @@ $(document).ready(function() {
         ];
     }
 
- 
      function getToday(){
         
         var today = new Date();
@@ -426,7 +430,8 @@ $(document).ready(function() {
         for (var i = 0; i <= array.length-1; i++) {
 
             var startDate = getFormattedDate(new Date(array[i].start._d));
-            var endDate = getFormattedDate(new Date(array[i].end._d));
+            var endDate;
+            endDate = getFormattedDate(new Date(array[i].end._d));
 
             var endDateSubtracted = new Date(endDate);
             var endYear = endDateSubtracted.getFullYear();
@@ -519,8 +524,6 @@ $(document).ready(function() {
     $("#title").change(function(){
         disableAddButton();
     });
-
-
 
 });
 
