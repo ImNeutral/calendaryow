@@ -5,3 +5,7 @@ Hello worldSQSS
 function hi() {
     aw
 }
+
+function hello() {
+    hello
+}
