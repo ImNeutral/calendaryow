@@ -181,6 +181,7 @@ $(document).ready(function() {
             ccConfirm.on('click', function () {
                 $('#calendar').fullCalendar('removeEvents', [event['_id'] ]);
                 saveEvents();
+                getTodayEvents();
                 ccConfirm.off();
                 modalOut(ccModal);
                 modalOut(editEventModal);
