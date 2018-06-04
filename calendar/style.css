@@ -4,7 +4,13 @@ body {
     font-family: "Century Gothic","Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
     font-size: 14px;
 
-    background-image: url("dark-wood.png");
+    background-image: url("theRock3.jpg");
+
+    height: 100%;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 td {
@@ -65,6 +71,7 @@ td.fc-today {
 
 .fc-center {
     font-size: 23px;
+    color: black;
 }
 
 .fc-left {
